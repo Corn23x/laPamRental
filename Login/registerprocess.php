@@ -1,5 +1,5 @@
 <?php
-include("../controllers/customer_controller.php");
+include_once(dirname(__DIR__,1). "/controllers/customer_controller.php");
 
 
 if (empty($_POST['first_name'])||

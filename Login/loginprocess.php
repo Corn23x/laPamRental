@@ -1,7 +1,7 @@
 <?php
-include(dirname(__DIR__, 1) . '/settings/core.php');
+include_once(dirname(__DIR__, 1) . '/settings/core.php');
 
-include("../controllers/customer_controller.php");
+include_once(dirname(__DIR__,1). "/controllers/customer_controller.php");
 
 //  do not include a session on a page that has been included and contains a session.
 

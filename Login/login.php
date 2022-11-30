@@ -1,5 +1,5 @@
 <?php
-include("../functions/common_function.php");
+include_once(dirname(__DIR__,1). "/functions/common_function.php");
 
 getLinks();
 

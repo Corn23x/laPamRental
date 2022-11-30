@@ -1,8 +1,8 @@
 <?php
 	// landing/index page
 
-include('../functions/common_function.php');
-include('../controllers/customer_controller.php');
+include_once(dirname(__DIR__,1). '/functions/common_function.php');
+include_once(dirname(__DIR__,1). '../controllers/customer_controller.php');
 	
 getLinks();
 ?>

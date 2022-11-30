@@ -10,7 +10,7 @@ include_once('controllers/product_controller.php');
 
 
 <!doctype html>
-<html class="no-js" lang="en">
+<html class="" lang="en">
 
     <head>
         <!-- meta data -->
