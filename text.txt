@@ -1,0 +1,207 @@
+
+
+
+1ST
+
+<div class="item">
+						<div class="single-slide-item slide2">
+							<div class="container">
+								<div class="welcome-hero-content">
+									<div class="row">
+										<div class="col-sm-7">
+											<div class="single-welcome-hero">
+												<div class="welcome-hero-txt">
+													<h4><?= $row['product_title'] ?></h4>
+													
+													<p>
+													<?= $row['product_desc'] ?>		
+												</p>
+
+													<div class="packages-price">
+														<p>
+														<?= $row['product_price'] ?>
+															<del>$ 299.00</del>
+														</p>
+													</div>
+
+													<button class="btn-cart welcome-add-cart">
+													
+												 <a href="actions/add_to_cart.php?id=<?= $row['product_id'] ?>">Add to Cart</a>
+													</button>
+
+												</div><!--/.welcome-hero-txt-->
+											</div><!--/.single-welcome-hero-->
+										</div><!--/.col-->
+										<div class="col-sm-5">
+											<div class="single-welcome-hero">
+												<div class="welcome-hero-img">
+													<img src="images/<?= $row['product_image'] ?>" alt="slider image">
+												</div><!--/.welcome-hero-txt-->
+											</div><!--/.single-welcome-hero-->
+										</div><!--/.col-->
+									</div><!--/.row-->
+								</div><!--/.welcome-hero-content-->
+							</div><!-- /.container-->
+						</div><!-- /.single-slide-item-->
+
+					</div><!-- /.item .active-->
+
+
+
+2ND
+					<div class="item">
+						<div class="single-slide-item slide3">
+							<div class="container">
+								<div class="welcome-hero-content">
+									<div class="row">
+										<div class="col-sm-7">
+											<div class="single-welcome-hero">
+												<div class="welcome-hero-txt">
+													<h4><?= $row['product_title'] ?></h4>
+													<p>
+													<?= $row['product_desc'] ?>
+													</p>
+													<div class="packages-price">
+														<p>
+														<?= $row['product_price'] ?>
+															<del>$ 399.00</del>
+														</p>
+													</div>
+
+													<button class="btn-cart welcome-add-cart">
+													
+												 <a href="actions/add_to_cart.php?id=<?= $row['product_id'] ?>">Add to Cart</a> 
+												
+													</button> 
+												</div><!--/.welcome-hero-txt-->
+											</div><!--/.single-welcome-hero-->
+										</div><!--/.col-->
+
+
+										<div class="col-sm-5">
+											<div class="single-welcome-hero">
+												<div class="welcome-hero-img">
+												<img src="images/<?= $row['product_image'] ?>" style="max-width: 300px; max-height:300px;" alt="product image">
+
+												</div><!--/.welcome-hero-txt-->
+											</div><!--/.single-welcome-hero-->
+										</div><!--/.col-->
+									</div><!--/.row-->
+								</div><!--/.welcome-hero-content-->
+							</div><!-- /.container-->
+						</div><!-- /.single-slide-item-->
+						
+					</div><!-- /.item .active-->
+				</div><!-- /.carousel-inner-->
+
+			</div><!--/#header-carousel-->
+
+
+
+
+3RD
+
+            <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+				<!--/.carousel-indicator -->
+				 <ol class="carousel-indicators">
+					<li data-target="#header-carousel" data-slide-to="0" class="active"><span class="small-circle"></span></li>
+					<li data-target="#header-carousel" data-slide-to="1"><span class="small-circle"></span></li>
+					<li data-target="#header-carousel" data-slide-to="2"><span class="small-circle"></span></li>
+				</ol><!-- /ol-->
+				<!--/.carousel-indicator -->
+
+				<div class="carousel-inner" role="listbox">
+					<!-- .item -->
+				<div class="item active">
+				<div class="single-slide-item slide1">
+				<div class="container">
+				<div class="welcome-hero-content">
+				
+				<?php
+					$run= selectProdran();
+				foreach($run as $row){ 	
+				
+
+				?>
+				<!--/.carousel-inner -->
+				
+									<div class="row">
+										<div class="col-sm-7">
+											<div class="single-welcome-hero">
+												<div class="welcome-hero-txt">
+													<h4><?= $row['product_title'] ?></h4>
+													<p>
+
+													<?= $row['product_desc'] ?>
+													
+												</p>
+													<div class="packages-price">
+														<p>
+														<?= $row['product_price'] ?>
+															<del>$ 499.00</del>
+														</p>
+													</div>
+											
+												<button class="btn-cart welcome-add-cart" >
+												
+												<a href="actions/add_to_cart.php?id=<?= $row['product_id'] ?>">Add to Cart</a>
+											
+													</button>
+												
+												</div><!--/.welcome-hero-txt-->
+											</div><!--/.single-welcome-hero-->
+										</div><!--/.col-->
+										
+										<div class="col-sm-5">
+											<div class="single-welcome-hero">
+												<div class="welcome-hero-img">
+													<img src="images/<?= $row['product_image'] ?>" alt="slider image">
+												</div><!--/.welcome-hero-txt-->
+											</div><!--/.single-welcome-hero-->
+										</div><!--/.col-->
+								
+					<?php
+					}
+
+					?>
+
+			</div><!--/.row-->
+					</div><!--/.welcome-hero-content-->
+					</div><!-- /.container-->
+					</div><!-- /.single-slide-item-->
+					</div><!-- /.item .active-->
+					
+
+
+
+
+					Some code for products page
+
+							if(!isset($_GET['category'])){
+				if(!isset($_GET['brand'])){
+				$products = prod_select();
+
+
+					foreach($products as $product){
+						echo "<div class='col-md-3 col-sm-6'>";
+						echo "<div class='single-new-arrivals'>";
+						echo "<div class='single-new-arrivals-img'>";
+						echo "<a href='view/product.php?id={$product['product_id']}'>";
+						echo "<img src='images/{$product['product_image']}' alt='new-arrivals images'>";
+						echo "</a>";
+						echo "</div>";
+						echo "<div class='single-new-arrivals-txt'>";
+						echo "<h2>";
+						echo "<a href='view/product.php?id={$product['product_id']}'>{$product['product_title']}</a>";
+						echo "</h2>";
+						echo "<div class='new-arrivals-price'>";
+						echo "<h4>{$product['product_price']}</h4>";
+						echo "</div>";
+						echo "<button class='btn-cart welcome-add-cart new-arrivals-btn' onclick='window.location.href='view/product.php?id={$product['product_id']}''>";
+						echo "add to cart";
+						echo "</button>";
+						echo "</div>";
+						echo "</div>";
+						echo "</div>";
+					}
+					

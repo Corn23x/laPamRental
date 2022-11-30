@@ -556,7 +556,7 @@ foreach($products as $product){
 			if($countbrand==0){
 				echo "
 				<div class='alert alert-danger'>
-				<h1>There are no products under this brand</h1>
+				<h1>There are no products under this brand. <a href='index.php'><u>Return to all products</u></a> </h1>
 				</div>
 				
 				";
@@ -609,9 +609,6 @@ foreach($products as $product){
 
 		<!-- Category Selection -->
 
-		
-			
-
 		<?php
 		if(isset($_GET['category'])){
 			
@@ -626,7 +623,7 @@ foreach($products as $product){
 			if($countcat==0){
 				echo "
 				<div class='alert alert-danger'>
-				<h1>There are no products in this category</h1>
+				<h1>There are no products in this category. <a href='index.php'><u>Return to all products</u></a> </h1>
 				</div>
 				
 				";
