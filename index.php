@@ -328,7 +328,8 @@ include_once('controllers/product_controller.php');
 				                <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
 				                    <li class=" scroll active"><a href="#home">home</a></li>
 				                    <li class="scroll"><a href="#new-arrivals">products</a></li>
-				                    <li class="scroll"><a href="#feature">features</a></li>
+				                    <li class=""><a href="aboutus.php">About us</a></li>
+				                    <li class=""><a href="">features</a></li>
 
 									<?php   
 									if(isset($_SESSION['id'])){
@@ -369,7 +370,7 @@ include_once('controllers/product_controller.php');
 									<div class="row">
 										<div class="col-md-4 col-sm-12">
 											<div class="single-inner-populer-product-img">
-												<img src="assets/images/populer-products/p2.png" alt="populer-products images">
+												<img src="images/sale1.png" alt="populer-products images">
 											</div>
 										</div>
 
@@ -377,16 +378,16 @@ include_once('controllers/product_controller.php');
 											<div class="single-inner-populer-product-txt">
 												<h2>
 													<a>
-														Best <span>Deal!</span>
+														Best <span>Deals!</span>
 													</a>
 												</h2>
 												<p>
 													Best price for product on our website NOW!
 												</p>
 												<div class="populer-products-price">
-													<h4>Sales Start from <span>$99.00</span></h4>
+													<h4>Sales Start from GHS<span> 350.00</span></h4>
 												</div>
-												<button class="btn-cart welcome-add-cart populer-products-btn" onclick="window.location.href='#'">
+												<button class="btn-cart welcome-add-cart populer-products-btn" onclick="window.location.href='#new-arrivals'">
 													discover more
 												</button>
 											</div>
@@ -445,6 +446,8 @@ include_once('controllers/product_controller.php');
        echo "<option value='{$all['brand_id']}'>{$all['brand_name']}</option>";
    
    }
+
+   	
             ?>
 				</select> 
 				<button class="btn btn-warning">Go</button>
@@ -457,6 +460,15 @@ include_once('controllers/product_controller.php');
 				<div class="new-arrivals-content">
 					<div class="row">
 <?php
+if(!isset($_GET['brand'])){
+	if(!isset($_GET['category'])){
+		
+	// $brand_id= $_GET['brand'];
+	// $selectbrand= selectProdbrand($brand_id);
+	
+	// foreach($selectbrand as $brand){ }
+	
+
 $products= prod_select();
 
 foreach($products as $product){
@@ -489,6 +501,8 @@ foreach($products as $product){
 						</div>
 <?php
 }
+	}
+}	
 ?>
 						<!-- <div class="col-md-3 col-sm-4">
 							<div class="single-new-arrival">
@@ -516,6 +530,158 @@ foreach($products as $product){
 		
 		</section><!--/.new-arrivals-->
 		<!--new-arrivals end -->
+
+
+
+		
+		<!-- Brand Selection -->
+		<section id="new-arrivals" class="new-arrivals">
+		
+		<div class="container">
+		<div class="new-arrivals-content">
+		<div class="row">
+		
+
+		<?php
+		if(isset($_GET['brand'])){
+			
+				
+			$brand_id= $_GET['brand'];
+	
+			$selectbrand= selectProdbrand($brand_id);
+			$countbrand= countBrandctr($brand_id);
+
+			// var_dump($countbrand);
+
+			if($countbrand==0){
+				echo "
+				<div class='alert alert-danger'>
+				<h1>There are no products under this brand</h1>
+				</div>
+				
+				";
+
+			}
+
+			
+				foreach($selectbrand as $brand){
+					
+						?>
+					
+						<div class="col-md-3 col-sm-4">
+						<div class="single-new-arrival">
+								<div class="single-new-arrival-bg">
+									
+									<img src="images/<?=$brand['product_image'] ?>" alt="new-arrivals images" style="max-width: 250px; ">
+									<div class="single-new-arrival-bg-overlay"></div>
+									<div class="new-arrival-cart">
+										<p>
+											<span class="lnr lnr-cart"></span>
+											<a href="actions/add_to_cart.php?add_to_cart=<?=$brand['product_id']?>">add <span>to </span> cart</a>
+										</p>
+										<p class="arrival-review pull-right">
+										
+											<a href="view/single_product.php?id=<?=$brand['product_id']?>"><span class="lnr lnr-frame-expand"></span></a>
+										</p>
+									</div>
+								</div>
+								<h4><a href="#"><?=$brand['product_title']?></a></h4>
+								<p class="arrival-product-price">GHS <?=$brand['product_price']?></p>
+							</div>
+				</div>
+
+
+				
+						<?php
+					}
+				}
+		
+				
+		?>
+
+						
+						
+					
+		<!-- Brand Selection End -->
+
+
+
+
+		<!-- Category Selection -->
+
+		
+			
+
+		<?php
+		if(isset($_GET['category'])){
+			
+				
+			$category_id= $_GET['category'];
+	
+			$selectcat= selectProdcat($category_id);
+			$countcat= countCartctr($category_id);
+
+			// var_dump($countcat);
+
+			if($countcat==0){
+				echo "
+				<div class='alert alert-danger'>
+				<h1>There are no products in this category</h1>
+				</div>
+				
+				";
+
+			}
+
+			
+				foreach($selectcat as $cat){
+					
+						?>
+					
+						<div class="col-md-3 col-sm-4">
+						<div class="single-new-arrival">
+								<div class="single-new-arrival-bg">
+									
+									<img src="images/<?=$cat['product_image'] ?>" alt="new-arrivals images" style="max-width: 250px; ">
+									<div class="single-new-arrival-bg-overlay"></div>
+									<div class="new-arrival-cart">
+										<p>
+											<span class="lnr lnr-cart"></span>
+											<a href="actions/add_to_cart.php?add_to_cart=<?=$cat['product_id']?>">add <span>to </span> cart</a>
+										</p>
+										<p class="arrival-review pull-right">
+										
+											<a href="view/single_product.php?id=<?=$cat['product_id']?>"><span class="lnr lnr-frame-expand"></span></a>
+										</p>
+									</div>
+								</div>
+								<h4><a href="#"><?=$cat['product_title']?></a></h4>
+								<p class="arrival-product-price">GHS <?=$cat['product_price']?></p>
+							</div>
+				</div>
+
+
+				
+						<?php
+					}
+				}
+		
+				
+		?>
+
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		
+		</section>
+
+
+
+		<!-- Category Selection End -->
+		
+
 
 
 
