@@ -440,6 +440,7 @@ include_once('controllers/product_controller.php');
 				<form action="" method="">
 				<select name="brand" id="">
 					<option value="">Brands</option>
+					
 					<?php
 					$brand = brand_select();
    foreach($brand as $all){
