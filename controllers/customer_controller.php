@@ -1,17 +1,17 @@
 <?php
-include("../classes/customer_class.php");
+include_once(dirname(__DIR__,1). "/classes/customer_class.php");
 // include("../functions/common_function.php");
 
 // edit,select,update,delete function
 
     // Select
-    function insertCustomer_ctr(){
+    function insertCustomer_ctr($fname,$lname,$email,$password,$country,$city,$contact){
         // Create an instance
     
         $select_item= new customerClass();
 
         // Execute a query
-       return $select_item->submitRec();
+       return $select_item->submitRec($fname,$lname,$email,$password,$country,$city,$contact);
 
     
     }

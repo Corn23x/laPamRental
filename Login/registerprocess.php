@@ -3,6 +3,7 @@ include_once(dirname(__DIR__,1). "/controllers/customer_controller.php");
 
 
 if (empty($_POST['first_name'])||
+empty($_POST['last_name'])||
 empty($_POST['email'])||
 empty($_POST['user_password'])||
 empty($_POST['confirm_password'])||
@@ -19,6 +20,7 @@ else{
 
 if(isset($_POST['submit'])){
 	$name = $_POST['first_name'];
+	$lname= $_POST['last_name'];
 	$email = $_POST['email'];
 	$user_password = $_POST['user_password'];
 	$_POST['user_password'] = password_hash($user_password, PASSWORD_DEFAULT);
@@ -28,7 +30,7 @@ if(isset($_POST['submit'])){
 	// $role = 1;
 
 
-	insertCustomer_ctr();
+	insertCustomer_ctr($name,$lname,$email,$_POST['user_password'],$country,$city,$contact_no );
 	// $customer = new customerClass();
 	// $customer->submitRec();
 

@@ -5,11 +5,10 @@ class customerClass extends db_connection{
 
    
 
-    function submitRec(){
+    function submitRec($fname,$lname,$email,$password,$country,$city,$contact){
     // insert query
-       $sql = "INSERT INTO `customer` (customer_name, customer_email, customer_pass, customer_country, customer_city, customer_contact,user_role)
-           VALUES
-         ('".$_POST['first_name']."', '".$_POST['email']."', '".$_POST['user_password']."', '".$_POST['country']."', '".$_POST['city']."', '".$_POST['contact_no']."','1')";
+       $sql = "INSERT INTO `customer` (`customer_name`, `customer_surname`, `customer_email`, `customer_pass`, `customer_country`, `customer_city`, `customer_contact`, `user_role`)
+           VALUES ('$fname', '$lname' ,'$email', '$password', '$country', '$city', '$contact','1')";
         // execute query
         
         return $this->db_query($sql);
