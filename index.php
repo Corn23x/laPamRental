@@ -329,7 +329,7 @@ include_once('controllers/product_controller.php');
 				                    <li class=" scroll active"><a href="#home">home</a></li>
 				                    <li class="scroll"><a href="#new-arrivals">products</a></li>
 				                    <li class=""><a href="aboutus.php">About us</a></li>
-				                    <li class=""><a href="">features</a></li>
+				                    <li class=""><a href="Login/register.php">Register</a></li>
 
 									<?php   
 									if(isset($_SESSION['id'])){
@@ -433,7 +433,7 @@ include_once('controllers/product_controller.php');
 				endforeach;
 
 					?>
-					
+
 				</select>
 				<button class="btn btn-warning">Go</button>
 				</form> <br>
