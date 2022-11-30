@@ -426,13 +426,14 @@ include_once('controllers/product_controller.php');
 				<select name="category" id="">
 					<option value="">Categories</option>
 					<?php
-					$cat = cat_select();
-						foreach($cat as $all){
-							echo "<option value='{$all['cat_id']}'>{$all['cat_name']}</option>";
+				$cat = cat_select();
+				foreach($cat as $all):
+					echo "<option value='{$all['cat_id']}'>{$all['cat_name']}</option>";
 
-							}
+				endforeach;
 
-?>
+					?>
+					
 				</select>
 				<button class="btn btn-warning">Go</button>
 				</form> <br>
