@@ -1,5 +1,6 @@
 <?php
 include_once(dirname(__DIR__,1). "/classes/customer_class.php");
+// include_once(dirname(__DIR__,1). "/functions/common_function.php");
 // include("../functions/common_function.php");
 
 // edit,select,update,delete function
@@ -29,6 +30,9 @@ include_once(dirname(__DIR__,1). "/classes/customer_class.php");
       
     }
 
+      
+    
+
 
     function mail_ctr(){
         // Create an instance
@@ -40,4 +44,15 @@ include_once(dirname(__DIR__,1). "/classes/customer_class.php");
 
     }
 
+    function select_email_ctr($email){
+        // Create an instance
+    
+        $select_item= new customerClass();
+
+        // Execute a query
+       return $select_item->select_email($email);
+
+    }
+
+    
 ?>

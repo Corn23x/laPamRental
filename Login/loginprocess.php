@@ -1,10 +1,8 @@
 <?php
 include_once(dirname(__DIR__, 1) . '/settings/core.php');
-
 include_once(dirname(__DIR__,1). "/controllers/customer_controller.php");
 
 //  do not include a session on a page that has been included and contains a session.
-
 
 
 // echo $_POST['enter'];
@@ -23,7 +21,6 @@ if(isset($_POST['enter'])){
         if($result){
             $_SESSION['id'] = $result['customer_id'];
             $_SESSION['user_role'] = $result['user_role'];
-            $_SESSION['customer_name'] = $result['customer_name'];
            
             if($_SESSION['user_role']== 2){
          echo "<script>alert('Login Successful')</script>";
@@ -46,6 +43,10 @@ if(isset($_POST['enter'])){
 
     
     }
+
+
+ 
+
 
 
 

@@ -1,5 +1,6 @@
 <?php
 include_once(dirname(__DIR__,1). "/functions/common_function.php");
+include_once(dirname(__DIR__,1). "/settings/core.php");
 
 getLinks();
 
@@ -17,7 +18,11 @@ getLinks();
 <body>
 <legend><center><h2><b>Login Form</b></h2></center></legend><br><br><br><br>
 
-<form class="Absolute-Center is-Responsive" action="loginprocess.php" method="POST">
+
+
+<form class="Absolute-Center is-Responsive" action="loginprocess.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm(event);">
+
+ 
   
 <div class="container bg-dark form-control">
     <div class="row">
@@ -27,12 +32,12 @@ getLinks();
   <div class="mb-3">
     
     <label for="exampleInputEmail1" class="form-label text-light">Email address</label>
-    <input type="email" name="e_mail" class="form-control text-dark" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <input type="email" name="e_mail" class="form-control text-dark" id="exampleInputEmail1" aria-describedby="emailHelp" required>
     <div id="emailHelp" class="form-text text-light">We'll never share your email with anyone else.</div>
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label text-light">Password</label>
-    <input type="password" name="pass" class="form-control text-dark" id="exampleInputPassword1">
+    <input type="password" name="pass" class="form-control text-dark" id="exampleInputPassword1" required>
   </div>
 
 
@@ -40,12 +45,18 @@ getLinks();
   <input type="submit" name="enter" value="Submit" class="btn btn-warning"></input>
     
 </form>
-</div>
-</div>
-</div>
-</div>
-</body>
+<br><br>
+<p class="login-card-footer-text text-light">Don't have an account? <a href="register.php" class="text-warning">Register here</a></p>
+                <nav class="login-card-footer-nav">
+                </nav>
 
+</div>
+</div>
+</div>
+</div>
+
+
+</body>
 
 </html>
 

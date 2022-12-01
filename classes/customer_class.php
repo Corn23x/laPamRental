@@ -15,34 +15,33 @@ class customerClass extends db_connection{
         
     }
 
-    // Login function
-    function login(){
-        $email = $_POST['e_mail'];
-        $password = $_POST['pass'];
-        $sql = "SELECT * FROM `customer` WHERE customer_email = '".$email."'";
-        $one= $this->db_fetch_one($sql);
- 
-        if(password_verify($password,$one['customer_pass'] )){
-            return $one;
-        }else{
-            return false;
-        }
-        // $user_role= $_POST['user_role'];
+  // Login function
+  function login(){
+    $email = $_POST['e_mail'];
+    $password = $_POST['pass'];
+    $sql = "SELECT * FROM `customer` WHERE customer_email = '".$email."'";
+    $one= $this->db_fetch_one($sql);
 
-
-       
-       
-
-      
-
-      
-
+    if(password_verify($password,$one['customer_pass'] )){
+        return $one;
+    }else{
+        return false;
+    }
+    // $user_role= $_POST['user_role'];
 }
+
+
 
 function mail_cls(){
     $email = $_POST['e_mail'];
-    $sql = "SELECT customer_email FROM `customer` WHERE customer_email = '".$email."'";
+    $sql = "SELECT customer_email FROM customer WHERE customer_email = '$email'";
 
+    return $this->db_fetch_one($sql);
+}
+
+
+function select_email($email){
+    $sql= "SELECT customer_email FROM customer WHERE customer_email= '$email'";
     return $this->db_fetch_one($sql);
 }
 

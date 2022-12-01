@@ -328,13 +328,13 @@ include_once('controllers/product_controller.php');
 				                <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
 				                    <li class=" scroll active"><a href="#home">home</a></li>
 				                    <li class="scroll"><a href="#new-arrivals">products</a></li>
-				                    <li class=""><a href="aboutus.php">About us</a></li>
+				                    <li class=""><a href="view/aboutus.php">About us</a></li>
 				                    <li class=""><a href="Login/register.php">Register</a></li>
 
 									<?php   
 									if(isset($_SESSION['id'])){
 										echo "<li><a href='Login/logout.php'>Logout</a></li>";
-										echo "<li><a href='view/cart.php'>Cart(?)</a></li>";
+										
 									}else{
 										echo "<li><a href='Login/login.php'>Login</a></li>";
 									}
