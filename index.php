@@ -241,6 +241,8 @@ include_once('controllers/cart_controller.php');
 
 			</div><!--/#header-carousel-->
 
+			
+
 			<!-- top-area Start -->
 			<div class="top-area">
 				<div class="header-area">
@@ -294,7 +296,7 @@ include_once('controllers/cart_controller.php');
 				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
 				                    <i class="fa fa-bars"></i>
 				                </button>
-				                <a class="navbar-brand" href="index.html">LaPamRental</a>
+				                <a class="navbar-brand" href="index.php">LaPamRental</a>
 
 				            </div><!--/.navbar-header-->
 				            <!-- End Header Navigation -->

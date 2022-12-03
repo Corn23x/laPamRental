@@ -70,11 +70,12 @@ include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
 				
 			}
 
-            .footer{
-              position: bottom;
-                padding: 20px;
-            }
+			.footer{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
 
+        }
 			
         </style>
 

@@ -86,6 +86,14 @@ input[type=submit]{
   
 }
 
+footer{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            margin-top: auto;
+
+        }
+
 </style>
 
 <body>

@@ -261,3 +261,59 @@
         </ul>
 
 					
+
+					<section id="populer-products" class="populer-products">
+
+<?php
+if(isset($_GET['id'])){
+
+$product_id= $_GET['id'];
+
+$result= Oneprod($product_id);
+
+//var_dump($result);
+
+// foreach($result as $results){
+
+    echo '
+
+<div class="container">
+    <div class="row">
+    <div class="col">
+<div class="card" style="width: 35rem;">
+  <img src="../images/'.$result['product_image'].' " class="card-img-top" alt="product image">
+  <div class="col">
+    <p class="card-title">cards content.</p>
+  </div>
+  <div class="card-body">
+  </div>
+  
+  </div>
+</div>
+</div>
+
+
+
+<div class="row" style="width: 50rem;">
+    <div class="card2 col">
+   <h1>Details:</h1>
+   <p>Price: </p>
+    <p>Quantity: 1</p>
+    <p>Description: </p>
+    </div>
+  </div>
+
+  </div>
+  ';
+  ?>
+
+  <?php
+  }
+//}
+
+  ?>
+
+
+
+
+</section>

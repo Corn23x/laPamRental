@@ -18,31 +18,6 @@ getLinks();
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 </head>
 
-<script>  
-// function verifyPassword() {  
-//   var pw = document.getElementById("user_password").value;  
-//   //check empty password field  
-//   if(pw == "") {  
-//      document.getElementById("message").innerHTML = "**Fill the password please!";  
-//      return false;  
-//   }  
-   
-//  //minimum password length validation  
-//   if(pw.length < 8) {  
-//      document.getElementById("message").innerHTML = "**Password length must be atleast 8 characters";  
-//      return false;  
-//   }  
-  
-// //maximum length of password validation  
-//   if(pw.length > 15) {  
-//      document.getElementById("message").innerHTML = "**Password length must not exceed 15 characters";  
-//      return false;  
-//   } else {  
-//    //  alert("Password is correct");
-//    die  
-//   }  
-// }  
-</script>  
 
 
 <body>
@@ -171,13 +146,15 @@ getLinks();
 <div class="col-md-4"><br>
 <button type="submit" id="submit" name="submit" class="btn btn-warning" >SUBMIT <span class="glyphicon glyphicon-send"></span></button>
 
-
+<a href="../index.php" class="btn btn-secondary" >Return to Home</a>
 
 </div>
 </div>
 
 </fieldset>
 </form>
+
+
 <br><br>
 <center><p class="login-card-footer-text text-dark">Already have an account? <a href="login.php" class="text-warning">Sign in here</a></p>
                 <nav class="login-card-footer-nav">
