@@ -2,6 +2,7 @@
 include_once(dirname(__DIR__,1). '/functions/common_function.php');
 include_once(dirname(__DIR__,1). '/settings/core.php');
 include_once(dirname(__DIR__,1). '/controllers/product_controller.php');
+include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
 
 
 
@@ -26,7 +27,7 @@ include_once(dirname(__DIR__,1). '/controllers/product_controller.php');
 		<link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
         
         <!-- title of site -->
-        <title>LaPamRental</title>
+        <title>About Us- LaPamRental</title>
 
         <!-- For favicon png -->
 		<link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
@@ -46,6 +47,8 @@ include_once(dirname(__DIR__,1). '/controllers/product_controller.php');
 		
         <!--bootstrap.min.css-->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
 		
 		<!-- bootsnav -->
 		<link rel="stylesheet" href="assets/css/bootsnav.css" >	
@@ -71,12 +74,16 @@ include_once(dirname(__DIR__,1). '/controllers/product_controller.php');
               position: bottom;
                 padding: 20px;
             }
+
+			
         </style>
-      
+
+
 
     </head>
 	
 	<body>
+		
 		
 		
 
@@ -102,7 +109,7 @@ include_once(dirname(__DIR__,1). '/controllers/product_controller.php');
 				        </div>
 				        <!-- End Top Search -->
 
-				        <div class="container">            
+						<div class="container">            
 				            <!-- Start Atribute Navigation -->
 				            <div class="attr-nav">
 				                <ul>
@@ -110,52 +117,29 @@ include_once(dirname(__DIR__,1). '/controllers/product_controller.php');
 				                		<a href="#"><span class="lnr lnr-magnifier"></span></a>
 				                	</li><!--/.search-->
 
-									
+									<?php 
+									if(isset($_SESSION['id'])){
+									?>
 				                    <li class="dropdown">
-				                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+				                        <a href="cart.php" >
 				                            <span class="lnr lnr-cart"></span>
-											<span class="badge badge-bg-1">2</span>
+											<span class="badge badge-bg-1"><?=countcartCtr($_SESSION['id']); ?></span>
 				                        </a>
-				                        <ul class="dropdown-menu cart-list s-cate">
-				                            <li class="single-cart-list">
-				                                <a href="#" class="photo"><img src="assets/images/collection/arrivals1.png" class="cart-thumb" alt="image" /></a>
-				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">arm <br> chair</a></h6>
-				                                	<p>1 x - <span class="price">$180.00</span></p>
-				                                </div><!--/.cart-list-txt-->
-				                                <div class="cart-close">
-				                                	<span class="lnr lnr-cross"></span>
-				                                </div><!--/.cart-close-->
-				                            </li><!--/.single-cart-list -->
-				                            <li class="single-cart-list">
-				                                <a href="#" class="photo"><img src="assets/images/collection/arrivals2.png" class="cart-thumb" alt="image" /></a>
-				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">single <br> armchair</a></h6>
-				                                	<p>1 x - <span class="price">$180.00</span></p>
-				                                </div><!--/.cart-list-txt-->
-				                                <div class="cart-close">
-				                                	<span class="lnr lnr-cross"></span>
-				                                </div><!--/.cart-close-->
-				                            </li><!--/.single-cart-list -->
-				                            <li class="single-cart-list">
-				                                <a href="#" class="photo"><img src="assets/images/collection/arrivals3.png" class="cart-thumb" alt="image" /></a>
-				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">wooden arn <br> chair</a></h6>
-				                                	<p>1 x - <span class="price">$180.00</span></p>
-				                                </div><!--/.cart-list-txt-->
-				                                <div class="cart-close">
-				                                	<span class="lnr lnr-cross"></span>
-				                                </div><!--/.cart-close-->
-				                            </li><!--/.single-cart-list -->
-				                            <li class="total">
-				                                <span>Total: $0.00</span>
-				                                <button class="btn-cart pull-right" onclick="window.location.href='#'">view cart</button>
-				                            </li>
-				                        </ul>
+										
+									
+
 				                    </li><!--/.dropdown-->
 				                </ul>
 				            </div><!--/.attr-nav-->
 				            <!-- End Atribute Navigation -->
+
+							<?php
+									}
+							?>
+						</div>
+
+
+
 
 				            <!-- Start Header Navigation -->
 				            <div class="navbar-header">
@@ -200,38 +184,40 @@ include_once(dirname(__DIR__,1). '/controllers/product_controller.php');
 		<!--welcome-hero end -->
 
 
-
              
 
 		<!--populer-products start -->
 		<section id="populer-products" class="populer-products">
 			<div class="container text-center">
+			<div class="section-header">
+					<h2>About Us</h2>	
+				</div>
+				<br>
 				<div class="populer-products-content">
 					<div class="row">
-                    <center>  <p class="fs-1">About Us</p> </center>
 						<div class="col-md-18">
 							<div class="single-populer-products">
 								<div class="single-inner-populer-products">
 									<div class="row">
+									
 										<div class="">
                                             
-											<div class="single-inner-populer-product-img">
+											<!-- <div class="single-inner-populer-product-img">
 												<img src="../images/aboutus.jpg" alt="populer-products images" class="image img-fluid">
-											</div>
-										</div>
+											</div> -->
+											<h2>WHO WE ARE</h2>
+											<p> LaPamRental has a strong commitment to fulfill custoemrs orders and provide only the best quality of products for customers. </p>
 
-                                        <div class="container text-center">
-  <div class="row align-items-start">
-                               
-                                <div class="col">
-                                One of three columns
-                                </div>
-                                <div class="col">
-                                One of three columns
-                                </div>
-                            </div>
-                          
-    </div>
+										</div>
+										
+										<br><br><br>
+
+										<h2>ABOUT OUR PRODUCTS</h2>
+											<p> We offer high quality furniture made mostly for events such as celebrations,funerals and more. Our aim is to be able to provide users the best price to able
+												to buy in large quantities or for customers to buy individual products.
+											</p>
+
+                                        </div>
   </div>
 </div>
 									</div>
@@ -246,6 +232,26 @@ include_once(dirname(__DIR__,1). '/controllers/product_controller.php');
 		</section><!--/.populer-products-->
 		<!--populer-products end-->
 
+	
+
+<br><br>
+
+
+
+<span class="border border-dark">
+	<img src="../images/infoicon.png" alt="Info icon">
+	<h3>Contact Us Via Email:</h3>
+			<a>capaalse@gmail.com</a>
+		</span>
+<br><br>
+
+<div>
+	<img src="../images/contacts-24.png" alt="Contacts">
+	<h3>Contact Us Via Phone:</h3>
+			<a>055 811 4931</a>
+		</span>
+</div>
+	<!-- <center><button type="button" class="btn btn-primary" value="geng" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">geng</button></center> -->
 
 
 	<br><br><br><br><br><br>

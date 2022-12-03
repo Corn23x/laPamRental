@@ -5,6 +5,16 @@ include_once(dirname(__DIR__, 1) . '/settings/core.php');
 include_once(dirname(__DIR__, 1) . '/functions/common_function.php');
 
 
+if(!isset($_SESSION['id'])){
+    echo'
+    <div class="alert alert-info">
+                    <h1>Please Sign In. </h1>
+                    </div>
+    ';
+    
+    header("Refresh:1; url=../Login/login.php");
+    die;
+}
 
 
 if(isset($_GET['add_to_cart'])){
@@ -31,7 +41,7 @@ if($result[0]){
 }else{
 
     echo "<script>alert('Product already added to cart, increase quantity instead.')</script>";
-    echo "<script>window.open('../index.php','_self')</script>";
+    echo "<script>window.open('../view/cart.php','_self')</script>";
 
 
 

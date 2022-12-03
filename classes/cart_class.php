@@ -78,6 +78,11 @@ class Cart_class extends db_connection{
 
     }
 
+    public function cartnum($productid,$customerid){
+        $sql = "SELECT qty FROM cart WHERE p_id='$productid' AND c_id='$customerid'";
+        return $this->db_fetch_all($sql);
+    }
+
 }
 
 

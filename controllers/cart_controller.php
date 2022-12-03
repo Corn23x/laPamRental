@@ -66,4 +66,10 @@ function countCartCtr($id){
     return $run_cart;
 }
 
+function cartnumctr($productid,$customerid){
+    $cart = new Cart_class();
+    $run_cart = $cart->cartnum($productid,$customerid);
+    return $run_cart;
+}
+
 ?>

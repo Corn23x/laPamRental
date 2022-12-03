@@ -217,10 +217,10 @@
     }
     
 
-    function countCartctr($catid){
+    function countCartectr($catid){
         $prod= new Product_class();
 
-        $run = $prod->countCart($catid);
+        $run = $prod->countCarte($catid);
         return $run;
     }
 

@@ -183,7 +183,7 @@
         }
 
 
-        public function countCart($catid){
+        public function countCarte($catid){
             $filter= "SELECT COUNT(*) FROM products WHERE product_cat = '$catid'";
             return $this->db_fetch_one($filter)['COUNT(*)'];
         }

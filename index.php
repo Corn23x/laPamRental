@@ -2,6 +2,7 @@
 include_once('functions/common_function.php');
 include_once('settings/core.php');
 include_once('controllers/product_controller.php');
+include_once('controllers/cart_controller.php');
 
 
 
@@ -266,52 +267,27 @@ include_once('controllers/product_controller.php');
 				                		<a href="#"><span class="lnr lnr-magnifier"></span></a>
 				                	</li><!--/.search-->
 
-									
+									<?php 
+									if(isset($_SESSION['id'])){
+									?>
 				                    <li class="dropdown">
-				                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+				                        <a href="view/cart.php" class="dropdown-toggle" data-toggle="dropdown" >
 				                            <span class="lnr lnr-cart"></span>
-											<span class="badge badge-bg-1">2</span>
+											<span class="badge badge-bg-1"><?=countcartCtr($_SESSION['id']); ?></span>
 				                        </a>
-				                        <ul class="dropdown-menu cart-list s-cate">
-				                            <li class="single-cart-list">
-				                                <a href="#" class="photo"><img src="assets/images/collection/arrivals1.png" class="cart-thumb" alt="image" /></a>
-				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">arm <br> chair</a></h6>
-				                                	<p>1 x - <span class="price">$180.00</span></p>
-				                                </div><!--/.cart-list-txt-->
-				                                <div class="cart-close">
-				                                	<span class="lnr lnr-cross"></span>
-				                                </div><!--/.cart-close-->
-				                            </li><!--/.single-cart-list -->
-				                            <li class="single-cart-list">
-				                                <a href="#" class="photo"><img src="assets/images/collection/arrivals2.png" class="cart-thumb" alt="image" /></a>
-				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">single <br> armchair</a></h6>
-				                                	<p>1 x - <span class="price">$180.00</span></p>
-				                                </div><!--/.cart-list-txt-->
-				                                <div class="cart-close">
-				                                	<span class="lnr lnr-cross"></span>
-				                                </div><!--/.cart-close-->
-				                            </li><!--/.single-cart-list -->
-				                            <li class="single-cart-list">
-				                                <a href="#" class="photo"><img src="assets/images/collection/arrivals3.png" class="cart-thumb" alt="image" /></a>
-				                                <div class="cart-list-txt">
-				                                	<h6><a href="#">wooden arn <br> chair</a></h6>
-				                                	<p>1 x - <span class="price">$180.00</span></p>
-				                                </div><!--/.cart-list-txt-->
-				                                <div class="cart-close">
-				                                	<span class="lnr lnr-cross"></span>
-				                                </div><!--/.cart-close-->
-				                            </li><!--/.single-cart-list -->
-				                            <li class="total">
-				                                <span>Total: $0.00</span>
-				                                <button class="btn-cart pull-right" onclick="window.location.href='#'">view cart</button>
-				                            </li>
-				                        </ul>
+										
+									
+
 				                    </li><!--/.dropdown-->
 				                </ul>
 				            </div><!--/.attr-nav-->
 				            <!-- End Atribute Navigation -->
+
+							<?php
+									}
+							?>
+						</div>
+
 
 				            <!-- Start Header Navigation -->
 				            <div class="navbar-header">
@@ -618,7 +594,7 @@ foreach($products as $product){
 			$category_id= $_GET['category'];
 	
 			$selectcat= selectProdcat($category_id);
-			$countcat= countCartctr($category_id);
+			$countcat= countCartectr($category_id);
 
 			// var_dump($countcat);
 
@@ -700,7 +676,8 @@ foreach($products as $product){
 										<div class="single-inner-populer-product-img">
 												<img src="images/banner.png" alt="populer-products images" class="image img-fluid">
 												<div class="middle">
-														<div class="text"><button onclick="window.location.href='view/aboutus.php'">About Us</button></div>
+														<div class="text">
+															<button onclick="window.location.href='view/aboutus.php'">About Us</button></div>
 													</div>
 											</div>
 											</div>
@@ -750,7 +727,7 @@ foreach($products as $product){
 									<ul>
 										<li><a href="#">my account</a></li><!--/li-->
 										<li><a href="#">order history</a></li><!--/li-->
-										<li><a href="#">my cart</a></li><!--/li-->
+										<li><a href="view/cart.php">my cart</a></li><!--/li-->
 									</ul><!--/ul-->
 								</div><!--/.hm-foot-menu-->
 							</div><!--/.hm-footer-widget-->
