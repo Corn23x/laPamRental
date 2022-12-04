@@ -60,7 +60,7 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
             <a href="products.php"><span class="fa fa-product-hunt mr-3"></span> Products</a>
           </li>
           <li>
-            <a href="../view/index.php"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+            <a href="../Login/logout.php"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
           </li>
         </ul>
 
@@ -73,11 +73,6 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
       <h2 class="order mb-4" style="color:black; text-align:left; font-size:40px">Orders</h2>
         <p>Welcome to the orders section</p>
         <p></p>
-        <form action="../actions/add_category.php" method="GET">
-            <label for="category">Add a category:</label>
-            <input name= 'category' required></input>
-            <input type= 'submit' name='submit' value='Add'></input>
-        </form>
         <div class="table-wrapper">
         <table class="fl-table">
             <Thead>
@@ -86,16 +81,16 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
                         Order ID
                     </th>
                     <th>
-                        Customer ID
+                        Customer Name
                     </th>
                     <th>
                        Invoice Number
                     </th>
                     <th>
-                        Order Date
+                         Products
                     </th> 
                     <th>
-                        Products
+                       Order date
                     </th> 
                 </tr>
             </Thead>

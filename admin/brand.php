@@ -62,7 +62,7 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
             <a href="products.php"><span class="fa fa-product-hunt mr-3"></span> Products</a>
           </li>
           <li>
-            <a href="../view/index.php"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+            <a href="../Login/logout.php"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
           </li>
         </ul>
 
