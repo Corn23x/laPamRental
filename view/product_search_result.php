@@ -47,8 +47,6 @@ include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
 		
         <!--bootstrap.min.css-->
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
 		
 		<!-- bootsnav -->
 		<link rel="stylesheet" href="assets/css/bootsnav.css" >	
@@ -91,7 +89,7 @@ include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
 		<!--welcome-hero start -->
 		<header id="home" class="welcome-hero">
 
-			 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
+			 
 			<!-- top-area Start -->
 			<div class="top-area">
 				<div class="header-area">
@@ -115,7 +113,7 @@ include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
 				        </div>
 				        <!-- End Top Search -->
 
-						<div class="container">            
+				        <div class="container">            
 				            <!-- Start Atribute Navigation -->
 				            <div class="attr-nav">
 				                <ul>
@@ -127,7 +125,7 @@ include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
 									if(isset($_SESSION['id'])){
 									?>
 				                    <li class="dropdown">
-				                        <a href="cart.php" >
+				                        <a href="view/cart.php" class="dropdown-toggle" data-toggle="dropdown" >
 				                            <span class="lnr lnr-cart"></span>
 											<span class="badge badge-bg-1"><?=countcartCtr($_SESSION['id']); ?></span>
 				                        </a>
@@ -145,14 +143,12 @@ include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
 						</div>
 
 
-
-
 				            <!-- Start Header Navigation -->
 				            <div class="navbar-header">
 				                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
 				                    <i class="fa fa-bars"></i>
 				                </button>
-				                <a class="navbar-brand" href="index.html">LaPamRental</a>
+				                <a class="navbar-brand" href="index.php">LaPamRental</a>
 
 				            </div><!--/.navbar-header-->
 				            <!-- End Header Navigation -->
@@ -160,18 +156,18 @@ include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
 				            <!-- Collect the nav links, forms, and other content for toggling -->
 				            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
 				                <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-				                    <li class=""><a href="../index.php">home</a></li>
+				                    <li class=" "><a href="../index.php">home</a></li>
 				                    <li class=""><a href="../index.php">products</a></li>
-				                    <li class="active"><a href="aboutus.php">About us</a></li>
+				                    <li class=""><a href="aboutus.php">About us</a></li>
 				                    <li class=""><a href="../Login/register.php">Register</a></li>
 
 									<?php   
 									if(isset($_SESSION['id'])){
 										echo "<li><a href='view/order_history.php'>Order History</a></li>";
-										echo "<li><a href='../Login/logout.php'>Logout</a></li>";
+										echo "<li><a href='Login/logout.php'>Logout</a></li>";
 										
 									}else{
-										echo "<li><a href='../Login/login.php'>Login</a></li>";
+										echo "<li><a href='Login/login.php'>Login</a></li>";
 									}
 									?>
 
@@ -190,76 +186,83 @@ include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
 		</header><!--/.welcome-hero-->
 		<!--welcome-hero end -->
 
+		
 
-             
 
-		<!--populer-products start -->
-		<section id="populer-products" class="populer-products">
-			<div class="container text-center">
-			<div class="section-header">
-					<h2>About Us</h2>	
-				</div>
+             <!-- Results area -->
+
+		<section id="new-arrivals" class="new-arrivals">
+			<div class="container">
+				<div class="section-header">
+					<h2>Products</h2>
+					
+				</div><!--/.section-header-->
 				<br>
-				<div class="populer-products-content">
-					<div class="row">
-						<div class="col-md-18">
-							<div class="single-populer-products">
-								<div class="single-inner-populer-products">
-									<div class="row">
-									
-										<div class="">
-                                            
-											<!-- <div class="single-inner-populer-product-img">
-												<img src="../images/aboutus.jpg" alt="populer-products images" class="image img-fluid">
-											</div> -->
-											<h2>WHO WE ARE</h2>
-											<p> LaPamRental has a strong commitment to fulfill custoemrs orders and provide only the best quality of products for customers. </p>
+				
+							<?php
+							
+if(isset($_GET['search_data_product'])){
+    $user_search=$_GET['search_data'];
+    $result = search_productctr($user_search);
 
-										</div>
-										
-										<br><br><br>
+	if(empty($result) ){
+		echo "
+				<div class='alert alert-danger'>
+				<h1>No products found. <a href='../index.php'><u>Return to all products</u></a> </h1>
+				</div>
+				
+				";
+	}
 
-										<h2>ABOUT OUR PRODUCTS</h2>
-											<p> We offer high quality furniture made mostly for events such as celebrations,funerals and more. Our aim is to be able to provide users the best price to able
-												to buy in large quantities or for customers to buy individual products.
-											</p>
+//var_dump($user_search);
 
-                                        </div>
-  </div>
-</div>
-									</div>
-								</div>
+
+    foreach($result as $results){
+
+		?>
+
+		<div class="col-md-3 col-sm-4">
+		<div class="single-new-arrival">
+			<div class="single-new-arrival-bg">
+				
+				<img src="../images/<?=$results['product_image'] ?>" alt="new-arrivals images" style="max-width: 250px; ">
+				
+				<div class="single-new-arrival-bg-overlay"></div>
+			
+				<div class="new-arrival-cart">
+					<p>
+						<span class="lnr lnr-cart"></span>
+						<a href="../actions/add_to_cart.php?add_to_cart=<?=$results['product_id']?>">add <span>to </span> cart</a>
+					</p>
+					<p class="arrival-review pull-right">
+					
+						<a href="single_product.php?id=<?=$results['product_id']?>"><span class="lnr lnr-frame-expand"></span></a>
+					</p>
+				</div>
+			</div>
+			<h4><a href="#"><?=$results['product_title']?></a></h4>
+			<p class="arrival-product-price">GHS <?=$results['product_price']?></p>
+		</div>
+	</div>
+
+<?php
+
+}
+}
+?>
+							
+							
 							</div>
 						</div>
-						
 					</div>
 				</div>
 			</div><!--/.container-->
-
-		</section><!--/.populer-products-->
-		<!--populer-products end-->
-
-	
-
-<br><br>
+		
+		</section><!--/.new-arrivals-->
+		<!--new-arrivals end -->
 
 
-
-<span class="border border-dark">
-	<img src="../images/infoicon.png" alt="Info icon">
-	<h3>Contact Us Via Email:</h3>
-			<a>capaalse@gmail.com</a>
-		</span>
-<br><br>
-
-<div>
-	<img src="../images/contacts-24.png" alt="Contacts">
-	<h3>Contact Us Via Phone:</h3>
-			<a>055 811 4931</a>
-		</span>
-</div>
-	<!-- <center><button type="button" class="btn btn-primary" value="geng" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">geng</button></center> -->
-
+<!-- End of Results area -->
 
 	<br><br><br><br><br><br>
 

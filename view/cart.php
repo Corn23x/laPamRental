@@ -111,7 +111,12 @@ footer{
 				            <div class="container">
 				                <div class="input-group">
 				                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-				                    <input type="text" class="form-control" placeholder="Search">
+
+									<form action="product_search_result.php" role="search" method="get">
+				                    <input type="search" class="form-control" name="search_data" placeholder="Search">
+									<input type="hidden" value="Search"  class="btn btn-outline-dark" name="search_data_product" >
+									</form>
+
 				                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
 				                </div>
 				            </div>
@@ -169,6 +174,7 @@ footer{
 
 									<?php   
 									if(isset($_SESSION['id'])){
+										echo "<li><a href='view/order_history.php'>Order History</a></li>";
 										echo "<li><a href='../Login/logout.php'>Logout</a></li>";
 										
 									}else{

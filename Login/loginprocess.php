@@ -39,20 +39,13 @@ if(isset($_POST['enter'])){
             $_SESSION['user_role'] = $result['user_role'];
            
             if($_SESSION['user_role']== 2){
-         echo "<script>alert('Login Successful')</script>";
+        
             echo "<script>window.open('../admin/admin.php','_self')</script>";
 
             // header('Location: ../landing_page.php');
     }elseif($_SESSION['user_role']== 1){
 
-echo'
-<div class="alert alert-success">
-				<h1>Login Successful. </h1>
-				</div>
-';
-
-header("Refresh:1; url=../index.php");
-
+        echo "<script>window.open('../index.php','_self')</script>";
 
 
     }

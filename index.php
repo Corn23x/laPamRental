@@ -241,7 +241,7 @@ include_once('controllers/cart_controller.php');
 
 			</div><!--/#header-carousel-->
 
-			
+
 
 			<!-- top-area Start -->
 			<div class="top-area">
@@ -254,7 +254,12 @@ include_once('controllers/cart_controller.php');
 				            <div class="container">
 				                <div class="input-group">
 				                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
-				                    <input type="text" class="form-control" placeholder="Search">
+
+									<form action="view/product_search_result.php" role="search" method="get">
+				                    <input type="search" class="form-control" name="search_data" placeholder="Search">
+									<input type="hidden" value="Search"  class="btn btn-outline-dark" name="search_data_product" >
+									</form>
+
 				                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
 				                </div>
 				            </div>
@@ -311,6 +316,7 @@ include_once('controllers/cart_controller.php');
 
 									<?php   
 									if(isset($_SESSION['id'])){
+										echo "<li><a href='view/order_history.php'>Order History</a></li>";
 										echo "<li><a href='Login/logout.php'>Logout</a></li>";
 										
 									}else{
@@ -712,10 +718,9 @@ foreach($products as $product){
 								</div><!--/.hm-foot-title-->
 								<div class="hm-foot-menu">
 									<ul>
-										<li><a href="#">about us</a></li><!--/li-->
-										<li><a href="#">contact us</a></li><!--/li-->
-										<li><a href="#">news</a></li><!--/li-->
-										<li><a href="#">store</a></li><!--/li-->
+										<li><a href="view/aboutus.php">about us</a></li><!--/li-->
+										<li><a href="view/aboutus.php">contact us</a></li><!--/li-->
+										<li><a href="#new-arrivals">store</a></li><!--/li-->
 									</ul><!--/ul-->
 								</div><!--/.hm-foot-menu-->
 							</div><!--/.hm-footer-widget-->
@@ -727,35 +732,26 @@ foreach($products as $product){
 								</div><!--/.hm-foot-title-->
 								<div class="hm-foot-menu">
 									<ul>
-										<li><a href="#">my account</a></li><!--/li-->
-										<li><a href="#">order history</a></li><!--/li-->
+										<li><a href="view/order_history.php">order history</a></li><!--/li-->
 										<li><a href="view/cart.php">my cart</a></li><!--/li-->
 									</ul><!--/ul-->
 								</div><!--/.hm-foot-menu-->
 							</div><!--/.hm-footer-widget-->
 						</div><!--/.col-->
-						<div class=" col-md-3 col-sm-6  col-xs-12">
+
+						<div class=" col-md-3 col-sm-6 col-xs-12">
 							<div class="hm-footer-widget">
 								<div class="hm-foot-title">
-									<h4>newsletter</h4>
+									<h4>contact us</h4>
 								</div><!--/.hm-foot-title-->
-								<div class="hm-foot-para">
-									<p>
-										Subscribe  to get latest news,update and information.
-									</p>
-								</div><!--/.hm-foot-para-->
-								<div class="hm-foot-email">
-									<div class="foot-email-box">
-										<input type="text" class="form-control" placeholder="Enter Email Here....">
-									</div><!--/.foot-email-box-->
-									<div class="foot-email-subscribe">
-										<span><i class="fa fa-location-arrow"></i></span>
-									</div><!--/.foot-email-icon-->
-								</div><!--/.hm-foot-email-->
+								<div class="hm-foot-menu">
+									<ul>
+										<li><a >(+233) 55 811 4931</a></li><!--/li-->
+										<li><a >(+233) 24 414 3416 </a></li><!--/li-->
+										
+									</ul><!--/ul-->
+								</div><!--/.hm-foot-menu-->
 							</div><!--/.hm-footer-widget-->
-						</div><!--/.col-->
-					</div><!--/.row-->
-				</div><!--/.hm-footer-details-->
 
 			</div><!--/.container-->
 
