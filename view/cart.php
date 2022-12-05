@@ -3,6 +3,7 @@
   include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
   include_once(dirname(__DIR__,1). '/controllers/product_controller.php');
   include_once(dirname(__DIR__,1). '/settings/core.php');
+ include_once(dirname(__DIR__,1). '/controllers/customer_controller.php');
 
 
 getLinks();
@@ -52,6 +53,10 @@ getLinks();
        
        <!--responsive.css-->
        <link rel="stylesheet" href="assets/css/responsive.css">
+
+	       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
+
   
 
 
@@ -174,7 +179,7 @@ footer{
 
 									<?php   
 									if(isset($_SESSION['id'])){
-										echo "<li><a href='view/order_history.php'>Order History</a></li>";
+										echo "<li><a href='order_history.php'>Order History</a></li>";
 										echo "<li><a href='../Login/logout.php'>Logout</a></li>";
 										
 									}else{
@@ -249,6 +254,7 @@ foreach($cart as $cart_item){
       <form action="../actions/manage_quantity_cart.php">
       <td><input type="number" min="0" class="qty" name="updatequant" placeholder=<?=$cart_item['qty'] ?>><input type="submit" value="Update" class="small btn btn-primary"></td></a>
       <input type="hidden" name="id" value=<?=$cart_item['p_id'] ?> class="form-control">
+	  <input type="hidden" name="totalquant" value=<?=$cart_total ?>>
       </form>
       <td><a href="../actions/remove_from_cart.php?id=<?=$cart_item['p_id'] ?>"><i class="fa fa-trash" aria-hidden="true"></i></td></a>
     </tr>
@@ -264,15 +270,18 @@ foreach($cart as $cart_item){
   <th scope="row">
     <td></td>
     <td colespan="2">Total Price: </td>
-    <td>GHS <?=$cart_total ?></td>
+    <td >GHS <span id="amount"><?=$cart_total ?></span></td>
   </th>
 </tr>
+<?php
 
+
+?>
 </tbody>
 </table>
 
 <a href="../index.php"><button class="btn btn-secondary text-light px-2 mx-2">Continue Shopping</button></a>
- <a href="#"><button class="btn btn-primary text-light">Checkout</button></a>
+ <a onclick='payWithPaystack()'><button class="btn btn-primary text-light"  >Checkout</button></a>
 
   
     </section>
@@ -311,8 +320,71 @@ foreach($cart as $cart_item){
         </footer><!--/.footer-->
 		<!--footer end-->
 
+		<?php
+		if(isset($_SESSION['id'])){
+  
+  $customerid= $_SESSION['id'];
+  $customer_email= select_email_ctr($customerid);
+  echo "<input type='hidden' id='email-address' value='$customer_email'>";
+//  $run= callcartproduct($customerid);
+}
+  ?>
+  
+    
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
-    <script src="assets/js/jquery.js"></script>
+<script src="https://js.paystack.co/v1/inline.js"></script> 
+
+<script>
+	console.log( document.getElementById("amount").innerHTML);
+
+function payWithPaystack() {
+  event.preventDefault();
+
+  let handler = PaystackPop.setup({
+    key: 'pk_test_807a46b46c8c9c96fcc5c197e615c83856ee0f6a', // Replace with your public key
+    email: document.getElementById("email-address").value,
+    amount: document.getElementById("amount").innerHTML * 100,
+    currency: "GHS",
+    ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+    // label: "Optional string that replaces customer email"
+    onClose: function(){
+      alert('Window closed.');
+    },
+
+    callback: function(response){
+      let message = 'Payment complete! Reference: ' + response.reference;
+      alert(message);
+
+      $.get('../actions/process_payment.php?ref=',
+      {ref: response.reference, total:document.getElementById('amount').innerHTML},
+      
+      function(data){
+		alert(data);
+        data=data.trim();
+        console.log(data);
+
+        if(data == "success"){
+            window.location.href="payment_successful.php";
+         } else{
+            window.location.href="payment_failed.php";
+         }
+
+      }
+        );
+    }
+
+  });
+
+  handler.openIframe();
+  }
+
+    </script>
+
+</body>
+
+<script src="assets/js/jquery.js"></script>
         
         <!--modernizr.min.js-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
@@ -330,6 +402,5 @@ foreach($cart as $cart_item){
         
         <!--Custom JS-->
         <script src="assets/js/custom.js"></script>
-</body>
 
 </html>

@@ -83,6 +83,56 @@ class Cart_class extends db_connection{
         return $this->db_fetch_all($sql);
     }
 
+
+    // Payment
+
+    public function insertorder($customerid, $invoice_no, $orderdate, $orderstatus){
+        $sql = "INSERT INTO orders (customer_id, invoice_no, order_date, order_status) VALUES($customerid, '$invoice_no',' $orderdate', '$orderstatus')" ;
+                return $this->db_query($sql);
+    }
+
+
+    public function selectorder($customerid, $invoice_no){
+        $sql = "SELECT order_id FROM orders WHERE customer_id = $customerid AND invoice_no = '$invoice_no'";
+            return $this->db_fetch_one($sql)['order_id'];
+    }
+
+
+    public function makepayment($amount, $customerid, $orderid, $currency, $paymentdate){
+        $sql = "INSERT INTO payment (amt, customer_id, order_id, currency, payment_date) VALUES($amount, $customerid, $orderid, '$currency', '$paymentdate')";
+            return $this->db_query($sql);
+    }
+
+
+    public function paymentdetails($orderid, $productid, $quantity){
+        $sql = "INSERT INTO orderdetails (order_id, product_id, qty) VALUES ($orderid, $productid, $quantity)";
+        return $this->db_query($sql);
+    }
+
+
+    public function emptycart($customerid){
+        $sql = "DELETE FROM cart WHERE c_id = $customerid";
+        return $this->db_query($sql);
+    }
+
+
+    public function selectallorder(){
+        $sql = "SELECT * FROM orders";
+        return $this->db_fetch_all($sql);
+    }
+
+    public function selectallorder_customer($customerid){
+        $sql = "SELECT * FROM orders WHERE customer_id = $customerid";
+        return $this->db_fetch_all($sql);
+    }
+
+    public function selectallorderdetails($orderid){
+        $sql = "SELECT * FROM orderdetails WHERE order_id = $orderid";
+        return $this->db_fetch_all($sql);
+    }
+
+
+
 }
 
 

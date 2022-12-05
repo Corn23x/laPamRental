@@ -1,5 +1,5 @@
 <?php
-require('../settings/db_class.php');
+include_once('../settings/db_class.php');
 
 class customerClass extends db_connection{
 
@@ -41,8 +41,8 @@ function mail_cls(){
 
 
 function select_email($email){
-    $sql= "SELECT customer_email FROM customer WHERE customer_email= '$email'";
-    return $this->db_fetch_one($sql);
+    $sql= "SELECT customer_email FROM customer WHERE customer_id= '$email'";
+    return $this->db_fetch_one($sql)['customer_email'];
 }
 
 

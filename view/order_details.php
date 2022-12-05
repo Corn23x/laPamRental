@@ -3,7 +3,7 @@
   include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
   include_once(dirname(__DIR__,1). '/controllers/product_controller.php');
   include_once(dirname(__DIR__,1). '/settings/core.php');
- include_once(dirname(__DIR__,1). '/controllers/customer_controller.php');
+ 
 
 
 getLinks();
@@ -24,7 +24,7 @@ getLinks();
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title></title>
+  <title>Order Details</title>
 
   <!-- For favicon png -->
   <link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
@@ -79,29 +79,31 @@ getLinks();
   
 }
 
-input[type=submit]{
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 5px 10px;
-  text-decoration: none;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 5px;
-  
-}
+
 
 footer{
-            position: absolute;
+        
             bottom: 0;
             width: 100%;
             margin-top: auto;
 
         }
 
+      
+
+        .hand{
+            cursor: pointer;
+            border: double;
+            background-color: #ccc;
+        }
+
 </style>
 
 <body>
+<?php
+
+?>
+
 <header id="home" class="welcome-hero">
 
 			 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> -->
@@ -204,7 +206,7 @@ footer{
 
 
         <?php
-        $select= selectallordercustomer($_SESSION['id']);
+        // $select= selectallordercustomer($_SESSION['id']);
 
        // var_dump($select);
         
@@ -212,58 +214,98 @@ footer{
 
         
 <br><br>
-<section id="populer-products" class="populer-products">
+<section id="new-arrivals" class="new-arrivals">
+			<div class="container ">
 
-<div class="title section-header">
-			<strong><h2>Order History</h2></strong>
+<div class="title section-header ">
+			<strong><h2>Details</h2></strong>
+            <br>
 				</div>
 
+                <?php
+                if(isset($_GET['id'])){
+                    $orderid= $_GET['id'];
+                    $result= selectallorderdetails_ctr($orderid);
+                    
+                    foreach($result as $results){
+                        $productid= $results['product_id'];
+
+                        $product= Oneprod($productid);
+
+                  
+                        echo '
+                       
+                        <div class="product-images p-4 ">
+                        <div class="main-product-images">
+                          <div class="product-image-display productImage1">
+                              <img src="../images/'.$product['product_image'].'" alt="" style="max-width: 250px; max-height:250px; ">
+                          </div>
+                        
+                          
+                          
+                        </div>
+                        
+                        
+                        
+                      </div>
+                  
+                  
+                      <div class="product-text">
+                          <h1 class="product-title"> Name:
+                            '.$product['product_title'].'
+                          </h1>
+                          <h4 class="product-subtitle">
+                            <span class="selectedProductColor"></span>
+                          </h4>
+                        <hr>
+                          <p class="product-description">
+                                 Description:       </p>
+                          <p class="product-description">
+                          '.$product['product_desc'].' 
+                                  </p>
+                          <p class="product-description"> Quantity:
+                          '.$results['qty'].' 
+                                  </p>
+
+                  <br>
+                  
+                  <hr>
+    
+                  
+                      </div>
+                     
+                  ';
+                    }
+
+              
+
+
+
+                    //var_dump($result);
+
+                    // $productid= $result['product_id'];
+                    // $qty= $result['qty'];
+
+                  //  print_r ($result);
+
+                    // $prod= Oneprod($productid);
+                }
+                
+                ?>
+                <br>
+
+
+                
+<button class="btn btn-warning" onclick="window.location.href='order_history.php'">Return to Order History</button><br>
+<!-- <a href="order_history.php" class="btn">Return to Order history</a> -->
 
 
 <br><br>
 
-<table class="table table-border table-warning">
-  <thead>
-    <tr>
-      <th scope="col">Order id</th>
-      <th scope="col">Invoice Number</th>
-      <th scope="col">Order Date</th>
-      <th scope="col">Order Status</th>
-        <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-<?php
-foreach($select as $order){
-
-?>
-      
- 
-    <tr>
-      <th scope="row"><?=$order['order_id']?></th>
-      <td><?=$order['invoice_no']?></td>
-      <td><?=$order['order_date']?></td>
-      <td><?=$order['order_status']?></td>
-      <td><a href="order_details.php?id=<?=$order['order_id']?>" role="button">See Details</a></td>
-    </tr>
-   
-
-  
-
-<?php
-}
-?>
 
 
 
-</tbody>
-</table>
-
-<a href="../index.php"><button class="btn btn-secondary text-light px-2 mx-2">Return Home</button></a>
-
-
-  
+            </div>
     </section>
  
 
