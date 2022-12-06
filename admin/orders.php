@@ -1,6 +1,9 @@
 <?php
-include('../controllers/product_controller.php');
-include(dirname(__DIR__, 1) . '/settings/core.php');
+include_once(dirname(__DIR__,1). '/controllers/product_controller.php');
+include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
+include_once(dirname(__DIR__,1). '/controllers/customer_controller.php');
+include_once(dirname(__DIR__, 1) . '/settings/core.php');
+
 ?>
 
 
@@ -81,37 +84,56 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
                         Order ID
                     </th>
                     <th>
-                        Customer Name
+                      Invoice Number
                     </th>
                     <th>
-                       Invoice Number
-                    </th>
-                    <th>
-                         Products
+                        Order Date
                     </th> 
                     <th>
-                       Order date
+                     Order Status
                     </th> 
+                    <th>
+                      Customer email
+                    </th> 
+                    
                 </tr>
             </Thead>
             <Tbody>
             <?php
-                $all_cat = cat_select();
-                foreach($all_cat as $all)
+                $all_order = selectallOrder_ctr();
+
+               // var_dump($all_order);
+               
+               
+
+               
+
+                foreach($all_order as $all)
                     {
+                      $mail= $all['customer_id'];
+                     $customer = select_email_ctr($mail);
+                     
+                    // var_dump($customer);
             ?>
                      <tr>
                          <td>
-                            <?= $all['cat_id'] ?>
+                            <?= $all['order_id'] ?>
+                        </td>
+                      
+                        <td>
+                            <?=$all['invoice_no'] ?>
                         </td>
                         <td>
-                            <?= $all['cat_name'] ?>
-                        </td>
+                           <?=$all['order_date'] ?>
+                        </td>  
                         <td>
-                            <a href=<?="category_update.php?id=".$all['cat_id'] ?>>Edit</a>
-                        </td>
+                              <?=$all['order_status'] ?>                        
+                          </td>  
                         <td>
-                            <a href=<?="../actions/deletecat.php?id=".$all['cat_id'] ?>>Delete</a>
+                               <?=$customer?> 
+                        </td>  
+                        <td>
+                            <a href="single_order.php?id=<?=$all['order_id'] ?>">View Products</a>
                         </td>  
                     </tr>
             <?php

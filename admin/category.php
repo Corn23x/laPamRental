@@ -78,6 +78,7 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
             <input name= 'category' required></input>
             <input type= 'submit' name='submit' value='Add'></input>
         </form>
+        <strong class="text text-danger">Note: Deleting a category that has been attached to a product will result in a failed update.</strong>
         <div class="table-wrapper">
         <table class="fl-table">
             <Thead>

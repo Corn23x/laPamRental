@@ -119,4 +119,10 @@ function selectallorderdetails_ctr($orderid){
     $run_cart = $cart->selectallorderdetails($orderid);
     return $run_cart;
 }
+
+function selectallOrder_ctr(){
+    $cart = new Cart_class();
+    $run_cart = $cart->selectallorder();
+    return $run_cart;
+}
 ?>

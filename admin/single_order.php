@@ -1,17 +1,17 @@
 <?php
-include('../controllers/product_controller.php');
-include(dirname(__DIR__, 1) . '/settings/core.php');
-
-
-
-
+include_once(dirname(__DIR__,1). '/controllers/product_controller.php');
+include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
+include_once(dirname(__DIR__,1). '/controllers/customer_controller.php');
+include_once(dirname(__DIR__, 1) . '/settings/core.php');
 
 ?>
+
+
 
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Sidebar 09</title>
+  	<title>Orders</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -22,7 +22,7 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
     <link rel="stylesheet" href="css/table.css">
 
     <style>
-        .brand{
+        .order{
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             padding: 20px;
@@ -30,6 +30,7 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
             
         }
     </style>
+
   </head>
   <body>
 		
@@ -42,20 +43,20 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
 	  		<div class="img bg-wrap text-center py-4" style="background-image: url(images/bg_1.jpg);">
 	  			<div class="user-logo">
 	  				<div class="img" style="background-image: url(images/logo.jpg);"></div>
-	  				<h3>Apaalse Pamela</h3>
+                      <h3>Apaalse Pamela</h3>
 	  			</div>
 	  		</div>
         <ul class="list-unstyled components mb-5">
           <li>
             <a href="admin.php"><span class="fa fa-home mr-3"></span> Home</a>
           </li>
-          <li class="active">
+          <li >
               <a href="brands.php"><span class="fa fa-list mr-3"></span> Brands</a>
           </li>
-          <li>
+          <li >
             <a href="category.php"><span class="fa fa-book mr-3"></span> Categories</a>
           </li>
-          <li>
+          <li class="active">
             <a href="orders.php"><span class="fa fa-credit-card mr-3"></span> Orders</a>
           </li>
           <li>
@@ -68,62 +69,74 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
 
     	</nav>
 
+
+
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
-        <h2 class="brand mb-4" style="color:black; text-align:left; font-size:40px">BRANDS</h2>
-        <p>Welcome to the brands section</p>
+      <h2 class="order mb-4" style="color:black; text-align:left; font-size:40px">Orders</h2>
+        
         <p></p>
-        <form action="../actions/add_brand.php" method="GET">
-            <label for="brand">Add a brand:</label>
-            <input name= 'brand' required></input>
-            <input type= 'submit' name='submit' value='Add'></input> 
-        </form>
-        <strong class="text text-danger">Note: Deleting a brand that has been attached to a product will result in a failed update.</strong>
         <div class="table-wrapper">
         <table class="fl-table">
             <Thead>
                 <tr>
                     <th>
-                        ID
-                    </th><hr>
-                    <th>
-                        Name
+                      Product Name
                     </th>
                     <th>
-                       Edit
+                     Product Price
                     </th>
                     <th>
-                        Delete
+                      Quantity
                     </th> 
+                   
+                    
                 </tr>
             </Thead>
             <Tbody>
             <?php
-                $all_brands = brand_select();
-                foreach($all_brands as $all)
+               if(isset($_GET['id'])){
+                $orderid= $_GET['id'];
+                $result= selectallorderdetails_ctr($orderid);
+                
+               // var_dump($all_order);
+               
+               
+
+               
+
+                foreach($result as $all)
                     {
+                        $productid= $all['product_id'];
+
+                        $product= Oneprod($productid);
+                     
+                    // var_dump($customer);
             ?>
                      <tr>
                          <td>
-                            <?= $all['brand_id'] ?>
+                            <?= $product['product_title'] ?>
+                        </td>
+                      
+                        <td>
+                            <?=$product['product_price'] ?>
                         </td>
                         <td>
-                            <?= $all['brand_name'] ?>
-                        </td>
-                        <td>
-                            <a href=<?="brand_update.php?id=".$all['brand_id'] ?>>Edit</a>
-                        </td>
-                        <td>
-                            <a href=<?="../actions/deletebrand.php?id=".$all['brand_id'] ?>>Delete</a>
+                           <?=$all['qty'] ?>
                         </td>  
+                      
+                        
                     </tr>
             <?php
                     }
+                }
             ?>
             </Tbody>
         </table>
-        </div>
         
+        </div>
+        <button class="btn btn-info" onclick="window.location.href='orders.php'">Return to orders</button>
+
       </div>
 
     
@@ -135,9 +148,8 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
 </body>
 </html>
 
+
+
 <?php
-
-
-
 
 ?>

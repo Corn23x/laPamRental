@@ -8,9 +8,9 @@ if (isset($_GET['id'])) {
     //make view aware of controller
     
     //run controller responsible for insert
-    $delbrand = cat_delete($default);
+    $delcat = cat_delete($default);
 
-    if ($delbrand) {
+    if ($delcat) {
         // echo "<script>alert('Update successful')</script>";
         // echo "<script>window.open('../admin/category.php','_self')</script>";
     } 

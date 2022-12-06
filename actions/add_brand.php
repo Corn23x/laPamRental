@@ -9,7 +9,6 @@ $default = $_GET['brand'];
     $insert = brand_add($default);
 
     if ($insert) {
-        echo "<script>alert('Brand added successful')</script>";
         echo "<script>window.open('../admin/brand.php','_self')</script>";
     } 
     else {

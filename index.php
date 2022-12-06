@@ -312,7 +312,7 @@ include_once('controllers/cart_controller.php');
 				                    <li class=" scroll active"><a href="#home">home</a></li>
 				                    <li class="scroll"><a href="#new-arrivals">products</a></li>
 				                    <li class=""><a href="view/aboutus.php">About us</a></li>
-				                    <li class=""><a href="Login/register.php">Register</a></li>
+				                   
 
 									<?php   
 									if(isset($_SESSION['id'])){
@@ -320,6 +320,7 @@ include_once('controllers/cart_controller.php');
 										echo "<li><a href='Login/logout.php'>Logout</a></li>";
 										
 									}else{
+										echo '<li class=""><a href="Login/register.php">Register</a></li>';
 										echo "<li><a href='Login/login.php'>Login</a></li>";
 									}
 									?>
@@ -732,8 +733,19 @@ foreach($products as $product){
 								</div><!--/.hm-foot-title-->
 								<div class="hm-foot-menu">
 									<ul>
-										<li><a href="view/order_history.php">order history</a></li><!--/li-->
-										<li><a href="view/cart.php">my cart</a></li><!--/li-->
+										<?php
+										if(isset($_SESSION['id'])){
+										echo '
+										<li><a href="view/order_history.php">order history</a></li>
+										<li><a href="view/cart.php">my cart</a></li>
+										';
+										}else{
+											echo '
+											<li><a href="Login/login.php">login</a></li>
+											<li><a href="Login/register.php">register</a></li>
+											';
+										}
+										?>
 									</ul><!--/ul-->
 								</div><!--/.hm-foot-menu-->
 							</div><!--/.hm-footer-widget-->

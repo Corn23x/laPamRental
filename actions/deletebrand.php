@@ -11,7 +11,6 @@ if (isset($_GET['id'])) {
     $delbrand = delete_brand($default);
 
     if ($delbrand) {
-        echo "<script>alert('Update successful')</script>";
         echo "<script>window.open('../admin/brand.php','_self')</script>";
     } 
 
