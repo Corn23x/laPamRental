@@ -29,6 +29,18 @@
        
     }
 
+    function selectOneBrand_ctr($brandid){
+        $brand = new Brand_class();
+        $run_brand = $brand->selectOneBrand($brandid);
+        return $run_brand;
+    }
+
+function selectBrand_ctr($brandid){
+        $brand = new Brand_class();
+        $run_brand = $brand->selectBrand($brandid);
+        return $run_brand;
+}
+
     function delete_brand($brandid) {
         //model class instance
         $branddel = new Brand_class();
@@ -80,6 +92,18 @@
         $run_cat = $catview->select_cat();
         return $run_cat;
       
+    }
+
+    function selectOneCat_ctr($catid){
+        $cat = new Category_class();
+        $run_cat = $cat->selectOneCat($catid);
+        return $run_cat;
+    }
+
+    function selectCat_ctr($catid){
+        $cat = new Category_class();
+        $run_cat = $cat->selectCat($catid);
+        return $run_cat;
     }
     
     function cat_delete($catid) {
@@ -143,6 +167,8 @@
         return $run_cat;
       
     }
+
+   
 
     function prod_select_ran() {
         //model class instance

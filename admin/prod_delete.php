@@ -11,7 +11,7 @@ include_once(dirname(__DIR__, 1) . '/settings/core.php');
 <!doctype html>
 <html lang="en">
   <head>
-  	<title>Orders</title>
+  	<title>Products</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -21,6 +21,9 @@ include_once(dirname(__DIR__, 1) . '/settings/core.php');
 		<link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/table.css">
 
+   
+
+    
     <style>
         .order{
             background-color: #fff;
@@ -28,6 +31,13 @@ include_once(dirname(__DIR__, 1) . '/settings/core.php');
             padding: 20px;
             margin-bottom: 20px;
             
+        }
+
+        .form{
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
         }
     </style>
 
@@ -56,10 +66,10 @@ include_once(dirname(__DIR__, 1) . '/settings/core.php');
           <li >
             <a href="category.php"><span class="fa fa-book mr-3"></span> Categories</a>
           </li>
-          <li class="active">
+          <li >
             <a href="orders.php"><span class="fa fa-credit-card mr-3"></span> Orders</a>
           </li>
-          <li>
+          <li class="active">
             <a href="products.php"><span class="fa fa-product-hunt mr-3"></span> Products</a>
           </li>
           <li>
@@ -68,82 +78,38 @@ include_once(dirname(__DIR__, 1) . '/settings/core.php');
         </ul>
 
     	</nav>
+        <div id="content" class="p-4 p-md-5 pt-5">
 
+<?php
 
-        <!-- Page Content  -->
-      <div id="content" class="p-4 p-md-5 pt-5">
-      <h2 class="order mb-4" style="color:black; text-align:left; font-size:40px">Orders</h2>
-        <p>Welcome to the orders section</p>
-        <p></p>
-        <div class="table-wrapper">
-        <table class="fl-table">
-            <Thead>
-                <tr>
-                    <th>
-                        Order ID
-                    </th>
-                    <th>
-                      Invoice Number
-                    </th>
-                    <th>
-                        Order Date
-                    </th> 
-                    <th>
-                     Order Status
-                    </th> 
-                    <th>
-                      Customer email
-                    </th> 
-                    
-                </tr>
-            </Thead>
-            <Tbody>
-            <?php
-                $all_order = selectallOrder_ctr();
+if(isset($_GET['del'])){
 
-               // var_dump($all_order);
-               
-               
+    $id= $_GET['del'];
+    $del= prod_del($id);
 
-               
+   // var_dump($del);
 
-                foreach($all_order as $all)
-                    {
-                      $mail= $all['customer_id'];
-                     $customer = select_email_ctr($mail);
-                     
-                    // var_dump($customer);
-            ?>
-                     <tr>
-                         <td>
-                            <?= $all['order_id'] ?>
-                        </td>
-                      
-                        <td>
-                            <?=$all['invoice_no'] ?>
-                        </td>
-                        <td>
-                           <?=$all['order_date'] ?>
-                        </td>  
-                        <td>
-                              <?=$all['order_status'] ?>                        
-                          </td>  
-                        <td>
-                               <?=$customer?> 
-                        </td>  
-                        <td>
-                            <a href="single_order.php?id=<?=$all['order_id'] ?>">View Products</a>
-                        </td>  
-                       
-                    </tr>
-            <?php
-                    }
-            ?>
-            </Tbody>
-        </table>
-        </div>
+    if($del){
+   
+        header("Refresh:1; url=products.php");
+
+    }else{
+        echo'
+        <div class="alert alert-danger">
+                        <h1>Product is in use! Cannot be deleted. </h1>
+                        </div>
+        ';
         
-      </div>
+        header("Refresh:1; url=products.php");
+    }
+
+  }
+  
+  ?>
+
+
+</div>
+      
 
     
     <script src="js/jquery.min.js"></script>
@@ -156,6 +122,3 @@ include_once(dirname(__DIR__, 1) . '/settings/core.php');
 
 
 
-<?php
-
-?>

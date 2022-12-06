@@ -125,4 +125,11 @@ function selectallOrder_ctr(){
     $run_cart = $cart->selectallorder();
     return $run_cart;
 }
+
+
+function deleteOrder_ctr($orderid){
+    $cart = new Cart_class();
+    $run_cart = $cart->deleteOrder($orderid);
+    return $run_cart;
+}
 ?>

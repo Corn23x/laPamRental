@@ -27,6 +27,16 @@
             return $this->db_fetch_all($sql);;
         }
 
+        public function selectOneBrand($brand_id){
+            $sql = "SELECT brand_name FROM brands WHERE brand_id = '$brand_id'";
+            return $this->db_fetch_one($sql);
+        }
+
+        public function selectBrand($brandid){
+            $sql = "SELECT * FROM brands WHERE brand_id = '$brandid'";
+            return $this->db_fetch_all($sql);
+        }
+
         //Delete model
         public function brand_delete($brandid) {
 
@@ -74,6 +84,16 @@
 
             //execute query
             return $this->db_fetch_all($sql);;
+        }
+
+        public function selectCat($catid){
+            $sql = "SELECT * FROM categories WHERE cat_id = '$catid'";
+            return $this->db_fetch_all($sql);
+        }
+
+        public function selectOneCat($catid){
+            $sql = "SELECT cat_name FROM categories WHERE cat_id = '$catid'";
+            return $this->db_fetch_one($sql);
         }
 
         //Delete model
@@ -141,7 +161,7 @@
         public function delete_product($productid) {
 
             //formulate delete query
-            $sql = "DELETE FROM products WHERE product_id='$productid'";
+            $sql = "DELETE  FROM products WHERE product_id='$productid'";
 
             //execute query
             return $this->db_query($sql);
@@ -162,6 +182,7 @@
             $sql = "SELECT * FROM products WHERE product_id = '$productid'";
             return $this->db_fetch_one($sql);
         }
+       
 
         
 

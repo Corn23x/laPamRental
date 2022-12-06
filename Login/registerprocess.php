@@ -90,7 +90,7 @@ if(isset($_POST['submit'])){
 		$data = insertCustomer_ctr($name, $lname, $email, $_POST['user_password'], $country, $city, $contact_no);
 		if($data){
 			$_SESSION['success'] = "Registration Successful";
-			header("location: ../index.php");
+			header("location: login.php");
 		}
 		else{
 			array_push($errors, "Registration Failed");

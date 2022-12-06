@@ -17,7 +17,7 @@
 <?php
 
 
-if (isset($_POST['summit'])) {
+if (isset($_POST['submit'])) {
     require('../controllers/product_controller.php');
     $brid = $_POST['id'];
     $updatebrand= $_POST['updatebrand'];

@@ -21,6 +21,9 @@ include_once(dirname(__DIR__, 1) . '/settings/core.php');
 		<link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/table.css">
 
+   
+
+    
     <style>
         .order{
             background-color: #fff;
@@ -28,6 +31,13 @@ include_once(dirname(__DIR__, 1) . '/settings/core.php');
             padding: 20px;
             margin-bottom: 20px;
             
+        }
+
+        .form{
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
         }
     </style>
 
@@ -69,40 +79,13 @@ include_once(dirname(__DIR__, 1) . '/settings/core.php');
 
     	</nav>
 
-        <?php
-
-if(isset($_GET['del'])){
-
-    $id= $_GET['del'];
-    $del= prod_del($id);
-
-    var_dump($del);
-
-    if($del){
-   
-         header("Refresh:1; url=products.php");
-
-    }else{
-        echo'
-        <div class="alert alert-danger">
-                        <h1>Product is in use! Cannot be deleted. </h1>
-                        </div>
-        ';
-        
-        header("Refresh:1; url=products.php");
-    }
-
-  }
-  
-  ?>
 
 
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
       <h2 class="order mb-4" style="color:black; text-align:left; font-size:40px">Products</h2>
-        <p>Welcome to the products section</p>
-        <button class="btn btn-primary" onclick="window.location.href='product_add.php'">Add a Product</button><br>
-        <strong class="text text-danger">Note: A product found under order details cannot be deleted.</strong>
+        <h5>Current product being editted:</h5>
+        <p></p>
         <div class="table-wrapper">
         <table class="fl-table">
             <Thead>
@@ -131,26 +114,24 @@ if(isset($_GET['del'])){
                     <th>
                       Product keywords
                     </th> 
-                    <th>
-                      Actions
-                    </th> 
+                   
                     
                 </tr>
             </Thead>
             <Tbody>
             <?php
-                $prod= prod_select();
+            if(isset($_GET['id'])){
 
-                //var_dump($prod);
+              $id= $_GET['id'];
+
+               
+              $prod= Oneprod($id);
+
+             //   var_dump($prod);
              
-               
-
-               
-
-                foreach($prod as $all)
-                    {
-                   $cat= $all['product_cat'];
-                   $brand=$all['product_brand'];
+              
+                   $cat= $prod['product_cat'];
+                   $brand=$prod['product_brand'];
 
                    $brand=selectOneBrand_ctr($brand);
                    $category=selectOneCat_ctr( $cat);
@@ -162,10 +143,10 @@ if(isset($_GET['del'])){
             ?>
                      <tr>
                      <td>
-                            <?=$all['product_id'] ?>
+                            <?=$prod['product_id'] ?>
                         </td>
                          <td>
-                        <img src="../images/<?= $all['product_image'] ?>" alt="" style="max-width: 150px; max-height: 150px; ">    
+                        <img src="../images/<?= $prod['product_image'] ?>" alt="" style="max-width: 150px; max-height: 150px; ">    
                         </td>
                       
                         <td>
@@ -175,33 +156,107 @@ if(isset($_GET['del'])){
                               <?=$brand['brand_name'] ?>                        
                           </td>  
                         <td>
-                               <?=$all['product_title']?> 
+                               <?=$prod['product_title']?> 
                         </td>  
                         <td>
-                            <?=$all['product_price'] ?>
+                            <?=$prod['product_price'] ?>
                         </td>  
                         <td>
-                            <?=$all['product_desc'] ?>
+                            <?=$prod['product_desc'] ?>
                         </td>  
                         <td>
-                            <?=$all['product_keywords'] ?>
+                            <?=$prod['product_keywords'] ?>
                         </td>  
-                        <td>
-                           <a href="product_edit.php?id=<?=$all['product_id']?>">Edit</a>
-                           <br><br>
-                            <a href="?del=<?=$all['product_id']?>">Delete</a>
-                        </td>  
+                        
                     </tr>
             <?php
-                    }
+                    } 
             ?>
             </Tbody>
         </table>
         </div>
-        
+        <br>
+
+<div class="form">
+         <!-- Form (Anything aside text in the form would require the 'enctype') -->
+    <form action="../actions/updateprod.php" method="post" enctype="multipart/form-data">
+    <!-- Title -->
+    <?php echo "<input type='hidden' name='id' value= $_GET[id] class='form-control'>" ?>
+    <div class="form-outline mb-4 w-50 m-auto">
+      <label for="product_title" class="form-label">Product Name</label>
+      <input type="text" name="product_title" id="product_title" class="form-control border" placeholder="Enter Product Title" autocomplete="off" required="required">
+
+    </div>
+    <!-- description -->
+    <div class="form-outline mb-4 w-50 m-auto">
+      <label for="description" class="form-label">Product Description</label>
+      <input type="text" name="description" id="description" class="form-control border" placeholder="Enter Product Description" autocomplete="off" required="required">
+
+    </div>
+<!-- keywords -->
+    <div class="form-outline mb-4 w-50 m-auto">
+      <label for="keywords" class="form-label">Product Keywords</label>
+      <input type="text" name="keywords" id="keywords" class="form-control border" placeholder="Enter Product keywords" autocomplete="off" required="required">
+
+    </div>
+    <br>
+
+    <!-- categories -->
+<div class="form-outline mb-4 w-50 m-auto">
+  <select name="product_categories" id="" class="form-select ">
+  <option value="">Select a Category</option>  
+<?php
+$cat = cat_select();
+foreach($cat as $all){
+    echo "<option value='{$all['cat_id']}'>{$all['cat_name']}</option>";
+
+}
+
+
+?>
+
+  </select>
+  <br>
+
+</div>
+<!-- Brands -->
+<div class="form-outline mb-4 w-50 m-auto">
+  <select name="product_brands" id="" class="form-select">
+  <option value="">Select a Brands</option>  
+  <?php
+   $brand = brand_select();
+   foreach($brand as $all){
+       echo "<option value='{$all['brand_id']}'>{$all['brand_name']}</option>";
+   
+   }
+            ?>
+  </select>
+  
+  <!-- Image 1 -->
+  <div class="form-outline mb-4 w-50 m-1">
+      <label for="product_image1" class="form-label">Product Image</label>
+      <input type="file" name="product_image1" id="product_image1" 
+      class="form-control" required="required">
+
+    </div>
+<!-- Price -->
+    <div class="form-outline">
+      <label for="product_price" class="form-label">Product Price</label>
+      <input type="text" name="product_price" id="product_price" class="form-control border" placeholder="Enter Product price" autocomplete="off" required="required">
+
+    </div>
+    <!-- Price -->
+    <div class="form-outline mb-7 mt-3 w-50 m-1">
+      <input type="submit" name="edit_product"  class="btn btn-info mb-3" value="Edit products"><br>
+    <a href="products.php" class="btn btn-secondary">Return</a>
+    </div>
+    </form>
+    </div>
+
       </div>
 
-    
+
+      
 
     
     <script src="js/jquery.min.js"></script>

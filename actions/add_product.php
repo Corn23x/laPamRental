@@ -33,8 +33,8 @@ or $product_brands=='' or $product_price=='' or  $product_image1==''){
   move_uploaded_file($temp_image1, "../images/$product_image1");
 
   
-  echo "<script>alert('Product added successful')</script>";
- echo "<script>window.open('../view/products.php','_self')</script>";
+
+ echo "<script>window.open('../admin/products.php','_self')</script>";
 
 }
 

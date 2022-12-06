@@ -17,7 +17,7 @@ if (isset($_POST['edit_product'])){
 
     if ($result){
         echo "<script>alert('Updated successful')</script>";
-        echo "<script>window.open('../view/products.php','_self')</script>";
+        echo "<script>window.open('../admin/products.php','_self')</script>";
 
     }else{
         echo 'error';

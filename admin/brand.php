@@ -50,7 +50,7 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
             <a href="admin.php"><span class="fa fa-home mr-3"></span> Home</a>
           </li>
           <li class="active">
-              <a href="brands.php"><span class="fa fa-list mr-3"></span> Brands</a>
+              <a href="brand.php"><span class="fa fa-list mr-3"></span> Brands</a>
           </li>
           <li>
             <a href="category.php"><span class="fa fa-book mr-3"></span> Categories</a>

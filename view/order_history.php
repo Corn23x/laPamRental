@@ -225,7 +225,7 @@ footer{
 <table class="table table-border table-warning">
   <thead>
     <tr>
-      <th scope="col">Order id</th>
+     
       <th scope="col">Invoice Number</th>
       <th scope="col">Order Date</th>
       <th scope="col">Order Status</th>
@@ -241,7 +241,7 @@ foreach($select as $order){
       
  
     <tr>
-      <th scope="row"><?=$order['order_id']?></th>
+      
       <td><?=$order['invoice_no']?></td>
       <td><?=$order['order_date']?></td>
       <td><?=$order['order_status']?></td>
