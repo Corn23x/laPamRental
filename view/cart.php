@@ -101,6 +101,37 @@ footer{
 
 </style>
 
+<?php
+if (isset($_GET['id'])) {
+
+  $productid = $_GET['id'];
+  $customerid= $_SESSION['id'];
+  $result = delete_cart($productid, $customerid);
+
+  if ($result) {
+      echo'
+      <div class="alert alert-success">
+                      <h1>Product Removed! </h1>
+                      </div>
+      ';
+      
+      header("Refresh:1; url=cart.php");
+  } else {
+      echo'
+      <div class="alert alert-danger">
+                      <h1>Product not Removed! </h1>
+                      </div>
+      ';
+      
+      header("Refresh:1; url=cart.php");
+  }
+
+}
+
+
+
+?>
+
 <body>
 <header id="home" class="welcome-hero">
 
@@ -257,7 +288,7 @@ foreach($cart as $cart_item){
       <input type="hidden" name="id" value=<?=$cart_item['p_id'] ?> class="form-control">
 	  <input type="hidden" name="totalquant" value=<?=$cart_total ?>>
       </form>
-      <td><a href="../actions/remove_from_cart.php?id=<?=$cart_item['p_id'] ?>"><i class="fa fa-trash" aria-hidden="true"></i></td></a>
+      <td><a href="?id=<?=$cart_item['p_id'] ?>"><i class="fa fa-trash" aria-hidden="true"></i></td></a>
     </tr>
    
 
