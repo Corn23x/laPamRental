@@ -161,10 +161,18 @@
         public function delete_product($productid) {
 
             //formulate delete query
-            $sql = "DELETE  FROM products WHERE product_id='$productid'";
+            $sql = "DELETE FROM products WHERE product_id='$productid'";
 
             //execute query
-            return $this->db_query($sql);
+          $del= $this->db_query($sql);
+          if($del){
+            return true;
+          }else{
+         echo ' <div class="alert alert-danger">
+                         <h1>Product is in use! Cannot be deleted. </h1>
+                        </div>';
+                        header("Refresh:1; url=products.php");
+          }
         }
 
         //Update model

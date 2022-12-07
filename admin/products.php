@@ -85,8 +85,13 @@ if(isset($_GET['del'])){
          header("Refresh:1; url=products.php");
 
     }else{
-      echo "<script>alert('Product is in use. Cannot be deleted')</script>";
-      echo "<script>window.open('products.php','_self')</script>";
+        // echo'
+        // <div class="alert alert-danger">
+        //                 <h1>Product is in use! Cannot be deleted. </h1>
+        //                 </div>
+        // ';
+        
+        // header("Refresh:1; url=products.php");
     }
 
   }
