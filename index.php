@@ -280,7 +280,7 @@ include_once('controllers/cart_controller.php');
 				                    <li class="dropdown">
 				                        <a href="view/cart.php" class="dropdown-toggle" data-toggle="dropdown" >
 				                            <span class="lnr lnr-cart"></span>
-											<span class="badge badge-bg-1"><?=countcartCtr($_SESSION['id']); ?></span>
+											<span class="badge badge-bg-1"><?=countCartCtr($_SESSION['id']); ?></span>
 				                        </a>
 										
 									
@@ -370,7 +370,7 @@ include_once('controllers/cart_controller.php');
 													Best price for product on our website NOW!
 												</p>
 												<div class="populer-products-price">
-													<h4>Sales Start from GHS<span> 350.00</span></h4>
+													<h4>Sales Start from GHS<span> 200.00</span></h4>
 												</div>
 												<button class="btn-cart welcome-add-cart populer-products-btn" onclick="window.location.href='#new-arrivals'">
 													discover more
@@ -778,13 +778,10 @@ foreach($products as $product){
 		<footer id="footer"  class="footer">
 			<div class="container">
 				<div class="hm-footer-copyright text-center">
-					<div class="footer-social">
-						<a href="#"><i class="fa fa-facebook"></i></a>	
-						<a href="#"><i class="fa fa-instagram"></i></a>
-						<a href="#"><i class="fa fa-behance"></i></a>	
-					</div>
+					
 					<p>
 						&copy;copyright. designed and developed by <a href="https://www.themesine.com/">themesine</a>
+						
 					</p><!--/p-->
 				</div><!--/.text-center-->
 			</div><!--/.container-->

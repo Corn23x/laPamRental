@@ -31,6 +31,36 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
         }
     </style>
   </head>
+
+
+  <?php
+  
+if (isset($_GET['id'])) {
+
+  $default = $_GET['id'];
+  //make view aware of controller
+  
+  //run controller responsible for insert
+  $delbrand = delete_brand($default);
+
+  if ($delbrand) {
+      echo "<script>window.open('brand.php','_self')</script>";
+  } 
+
+  else {
+    echo'
+    <div class="alert alert-danger">
+                    <h1>Brand is in use! Cannot be deleted. </h1>
+                    </div>
+    ';
+
+    header("Refresh:1; url=brand.php");
+  } 
+
+}
+
+  
+  ?>
   <body>
 		
 		<div class="wrapper d-flex align-items-stretch">
@@ -114,7 +144,7 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
                             <a href=<?="brand_update.php?id=".$all['brand_id'] ?>>Edit</a>
                         </td>
                         <td>
-                            <a href=<?="../actions/deletebrand.php?id=".$all['brand_id'] ?>>Delete</a>
+                            <a href=<?="?id=".$all['brand_id'] ?>>Delete</a>
                         </td>  
                     </tr>
             <?php

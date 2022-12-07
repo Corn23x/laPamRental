@@ -163,14 +163,15 @@ include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
 				                    <li class=""><a href="../index.php">home</a></li>
 				                    <li class=""><a href="../index.php">products</a></li>
 				                    <li class="active"><a href="aboutus.php">About us</a></li>
-				                    <li class=""><a href="../Login/register.php">Register</a></li>
+				                    
 
 									<?php   
 									if(isset($_SESSION['id'])){
-										echo "<li><a href='view/order_history.php'>Order History</a></li>";
+										echo "<li><a href='order_history.php'>Order History</a></li>";
 										echo "<li><a href='../Login/logout.php'>Logout</a></li>";
 										
 									}else{
+										echo '<li class=""><a href="../Login/register.php">Register</a></li>';
 										echo "<li><a href='../Login/login.php'>Login</a></li>";
 									}
 									?>

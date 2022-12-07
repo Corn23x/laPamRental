@@ -9,11 +9,11 @@ $default = $_GET['category'];
     $insert = cat_insert($default);
 
     if ($insert) {
-        echo "<script>alert('Category added successful')</script>";
+        
         echo "<script>window.open('../admin/category.php','_self')</script>";
     } 
     else {
-    echo 'insert failed'; 
+    echo "<script>alert('Update failed')</script>"; 
     } 
 }
 

@@ -52,7 +52,7 @@ $num_of_rows= cart_select($ip,$product_id);
 
 
 if($result[0]){
-    echo "<script>alert('Product has been added to cart')</script>";
+   // echo "<script>alert('Product has been added to cart')</script>";
     echo "<script>window.open('../view/cart.php','_self')</script>";
 
 

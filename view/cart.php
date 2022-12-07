@@ -175,16 +175,17 @@ footer{
 				                    <li class=""><a href="../index.php">home</a></li>
 				                    <li class=""><a href="../index.php">products</a></li>
 				                    <li class=""><a href="aboutus.php">About us</a></li>
-				                    <li class=""><a href="../Login/register.php">Register</a></li>
+				                   
 
 									<?php   
-									if(isset($_SESSION['id'])){
-										echo "<li><a href='order_history.php'>Order History</a></li>";
-										echo "<li><a href='../Login/logout.php'>Logout</a></li>";
-										
-									}else{
-										echo "<li><a href='../Login/login.php'>Login</a></li>";
-									}
+								if(isset($_SESSION['id'])){
+                  echo "<li><a href='order_history.php'>Order History</a></li>";
+                  echo "<li><a href='../Login/logout.php'>Logout</a></li>";
+                  
+                }else{
+                  echo '<li class=""><a href="../Login/register.php">Register</a></li>';
+                  echo "<li><a href='../Login/login.php'>Login</a></li>";
+                }
 									?>
 
 				                    <!-- <li class="scroll"><a href="#newsletter">contact</a></li> -->
@@ -252,7 +253,7 @@ foreach($cart as $cart_item){
       <td colspan="2"><?=$product['product_title'] ?></td>
       <td><?=$product['product_price'] ?></td>
       <form action="../actions/manage_quantity_cart.php">
-      <td><input type="number" min="0" class="qty" name="updatequant" placeholder=<?=$cart_item['qty'] ?>><input type="submit" value="Update" class="small btn btn-primary"></td></a>
+      <td><input type="number" min="1" class="qty" name="updatequant" placeholder=<?=$cart_item['qty'] ?>><input type="submit" value="Update" class="small btn btn-primary"></td></a>
       <input type="hidden" name="id" value=<?=$cart_item['p_id'] ?> class="form-control">
 	  <input type="hidden" name="totalquant" value=<?=$cart_total ?>>
       </form>

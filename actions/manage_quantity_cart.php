@@ -16,7 +16,7 @@ if(isset($_GET['updatequant'])){
     $result = update_quant($user_id, $quantity, $product_id);
 
     if ($result) {
-                echo "<script>alert('Quantity has been updated')</script>";
+              //  echo "<script>alert('Quantity has been updated')</script>";
                 echo "<script>window.open('../view/cart.php','_self')</script>";
             } else {
                 echo "<script>alert('Quantity has not been updated')</script>";

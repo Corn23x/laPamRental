@@ -1,6 +1,9 @@
 <?php
+include_once(dirname(__DIR__,1). '/settings/core.php');
 include_once(dirname(__DIR__,1). '/controllers/product_controller.php');
+include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
 include_once(dirname(__DIR__,1). '/functions/common_function.php');
+
 
 
 ?>
@@ -80,6 +83,8 @@ h5 {
     grid-row: 1 / span 1;
     width: 100%;
 }
+
+
 
 .product-image-display img {
   width: 100%;
@@ -237,7 +242,7 @@ jQuery(document).ready(function() {
                        <li class="dropdown">
                            <a href="cart.php" >
                                <span class="lnr lnr-cart"></span>
-                               <span class="badge badge-bg-1"><?=countcartCtr($_SESSION['id']); ?></span>
+                               <span class="badge badge-bg-1"><?=countCartCtr($_SESSION['id']); ?></span>
                            </a>
                        </li><!--/.dropdown-->
 
@@ -272,13 +277,14 @@ jQuery(document).ready(function() {
                        <li class=""><a href="../Login/register.php">Register</a></li>
 
                        <?php   
-                       if(isset($_SESSION['id'])){
-                        echo "<li><a href='view/order_history.php'>Order History</a></li>";
-                           echo "<li><a href='../Login/logout.php'>Logout</a></li>";
-                           
-                       }else{
-                           echo "<li><a href='../Login/login.php'>Login</a></li>";
-                       }
+                 if(isset($_SESSION['id'])){
+                    echo "<li><a href='order_history.php'>Order History</a></li>";
+                    echo "<li><a href='../Login/logout.php'>Logout</a></li>";
+                    
+                }else{
+                    echo '<li class=""><a href="../Login/register.php">Register</a></li>';
+                    echo "<li><a href='../Login/login.php'>Login</a></li>";
+                }
                        ?>
 
                        <!-- <li class="scroll"><a href="#newsletter">contact</a></li> -->
@@ -334,7 +340,7 @@ echo '
           '.$result['product_title'].'
         </h1>
         <h4 class="product-subtitle">
-          <span class="selectedProductColor"></span>
+        Price: GHS <span class="selectedProductColor">'.$result['product_price'].'</span>
         </h4>
       <hr>
         <p class="product-description">

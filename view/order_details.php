@@ -180,13 +180,14 @@ footer{
 				                    <li class=""><a href="../Login/register.php">Register</a></li>
 
 									<?php   
-									if(isset($_SESSION['id'])){
-										echo "<li class='active'><a href='order_history.php' >Order History</a></li>";
-										echo "<li><a href='../Login/logout.php'>Logout</a></li>";
-										
-									}else{
-										echo "<li><a href='../Login/login.php'>Login</a></li>";
-									}
+								if(isset($_SESSION['id'])){
+                                    echo "<li><a href='view/order_history.php'>Order History</a></li>";
+                                    echo "<li><a href='Login/logout.php'>Logout</a></li>";
+                                    
+                                }else{
+                                    echo '<li class=""><a href="Login/register.php">Register</a></li>';
+                                    echo "<li><a href='Login/login.php'>Login</a></li>";
+                                }
 									?>
 
 				                    <!-- <li class="scroll"><a href="#newsletter">contact</a></li> -->

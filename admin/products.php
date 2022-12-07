@@ -76,7 +76,7 @@ if(isset($_GET['del'])){
     $id= $_GET['del'];
     $del= prod_del($id);
 
-    var_dump($del);
+   // var_dump($del);
 
     if($del){
    

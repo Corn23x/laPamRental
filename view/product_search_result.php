@@ -127,7 +127,7 @@ include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
 				                    <li class="dropdown">
 				                        <a href="view/cart.php" class="dropdown-toggle" data-toggle="dropdown" >
 				                            <span class="lnr lnr-cart"></span>
-											<span class="badge badge-bg-1"><?=countcartCtr($_SESSION['id']); ?></span>
+											<span class="badge badge-bg-1"><?=countCartCtr($_SESSION['id']); ?></span>
 				                        </a>
 										
 									
@@ -159,18 +159,18 @@ include_once(dirname(__DIR__,1). '/controllers/cart_controller.php');
 				                    <li class=" "><a href="../index.php">home</a></li>
 				                    <li class=""><a href="../index.php">products</a></li>
 				                    <li class=""><a href="aboutus.php">About us</a></li>
-				                    <li class=""><a href="../Login/register.php">Register</a></li>
+				                  
 
 									<?php   
-									if(isset($_SESSION['id'])){
-										echo "<li><a href='view/order_history.php'>Order History</a></li>";
-										echo "<li><a href='Login/logout.php'>Logout</a></li>";
-										
-									}else{
-										echo "<li><a href='Login/login.php'>Login</a></li>";
-									}
+								if(isset($_SESSION['id'])){
+                                    echo "<li><a href='order_history.php'>Order History</a></li>";
+                                    echo "<li><a href='../Login/logout.php'>Logout</a></li>";
+                                    
+                                }else{
+                                    echo '<li class=""><a href="../Login/register.php">Register</a></li>';
+                                    echo "<li><a href='../Login/login.php'>Login</a></li>";
+                                }
 									?>
-
 				                    <!-- <li class="scroll"><a href="#newsletter">contact</a></li> -->
 				                </ul><!--/.nav -->
 				            </div><!-- /.navbar-collapse -->

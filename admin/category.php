@@ -29,6 +29,38 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
     </style>
 
   </head>
+
+  <!-- PHP function to delete a category -->
+<?php
+
+if (isset($_GET['id'])) {
+
+        $default = $_GET['id'];
+        //make view aware of controller
+
+        //run controller responsible for insert
+        $delcat = cat_delete($default);
+
+        if ($delcat) {
+        header("Refresh:1; url=category.php");
+     
+        } 
+
+        else {
+        echo'
+        <div class="alert alert-danger">
+                        <h1>Category is in use! Cannot be deleted. </h1>
+                        </div>
+        ';
+
+        header("Refresh:1; url=category.php");
+} 
+
+}
+
+?>
+
+
   <body>
 		
 		<div class="wrapper d-flex align-items-stretch">
@@ -114,7 +146,7 @@ include(dirname(__DIR__, 1) . '/settings/core.php');
                             <a href=<?="category_update.php?id=".$all['cat_id'] ?>>Edit</a>
                         </td>
                         <td>
-                            <a href=<?="../actions/deletecat.php?id=".$all['cat_id'] ?>>Delete</a>
+                            <a href=<?="?id=".$all['cat_id'] ?>>Delete</a>
                         </td>  
                     </tr>
             <?php
