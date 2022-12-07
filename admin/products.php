@@ -69,6 +69,8 @@ include_once(dirname(__DIR__, 1) . '/settings/core.php');
 
     	</nav>
 
+
+        
         <?php
 
 if(isset($_GET['del'])){
@@ -83,13 +85,8 @@ if(isset($_GET['del'])){
          header("Refresh:1; url=products.php");
 
     }else{
-        echo'
-        <div class="alert alert-danger">
-                        <h1>Product is in use! Cannot be deleted. </h1>
-                        </div>
-        ';
-        
-        header("Refresh:1; url=products.php");
+      echo "<script>alert('Product is in use. Cannot be deleted')</script>";
+      echo "<script>window.open('products.php','_self')</script>";
     }
 
   }

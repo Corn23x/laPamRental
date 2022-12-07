@@ -47,13 +47,8 @@ if (isset($_GET['id'])) {
         } 
 
         else {
-        echo'
-        <div class="alert alert-danger">
-                        <h1>Category is in use! Cannot be deleted. </h1>
-                        </div>
-        ';
-
-        header("Refresh:1; url=category.php");
+          echo "<script>alert('Category is in use. Cannot be deleted')</script>";
+          echo "<script>window.open('category.php','_self')</script>";
 } 
 
 }
