@@ -47,8 +47,13 @@ if (isset($_GET['id'])) {
         } 
 
         else {
-          echo "<script>alert('Category is in use. Cannot be deleted')</script>";
-          echo "<script>window.open('category.php','_self')</script>";
+        echo'
+        <div class="alert alert-danger">
+                        <h1>Category is in use! Cannot be deleted. </h1>
+                        </div>
+        ';
+
+        header("Refresh:1; url=category.php");
 } 
 
 }
@@ -105,7 +110,7 @@ if (isset($_GET['id'])) {
             <input name= 'category' required></input>
             <input type= 'submit' name='submit' value='Add'></input>
         </form>
-        <strong class="text text-danger">Note: Deleting a category that has been attached to a product will result in a failed update.</strong>
+        <strong class="text text-danger">Note: Deleting a category that has been attached to a product will result in all those products being deleted.</strong>
         <div class="table-wrapper">
         <table class="fl-table">
             <Thead>

@@ -48,8 +48,13 @@ if (isset($_GET['id'])) {
   } 
 
   else {
-    echo "<script>alert('Brand is in use. Cannot be deleted')</script>";
-    echo "<script>window.open('brand.php','_self')</script>";
+    echo'
+    <div class="alert alert-danger">
+                    <h1>Brand is in use! Cannot be deleted. </h1>
+                    </div>
+    ';
+
+    header("Refresh:1; url=brand.php");
   } 
 
 }
@@ -103,7 +108,7 @@ if (isset($_GET['id'])) {
             <input name= 'brand' required></input>
             <input type= 'submit' name='submit' value='Add'></input> 
         </form>
-        <strong class="text text-danger">Note: Deleting a brand that has been attached to a product will result in a failed update.</strong>
+        <strong class="text text-danger">Note: Deleting a brand that has been attached to a product will result in all those products being deleted.</strong>
         <div class="table-wrapper">
         <table class="fl-table">
             <Thead>

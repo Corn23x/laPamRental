@@ -32,6 +32,30 @@ include_once(dirname(__DIR__, 1) . '/settings/core.php');
     </style>
 
   </head>
+
+
+  <?php
+  if(isset($_GET['id'])){
+
+    $id= $_GET['id'];
+    $order = deleteOrder_ctr($id);
+
+    if($order){
+      header("Refresh:1; url=orders.php");
+    }
+    else{
+      echo'
+      <div class="alert alert-danger">
+                      <h1>Order is in use! Cannot be deleted. </h1>
+                      </div>
+      ';
+
+      header("Refresh:1; url=orders.php");
+  }
+
+}
+  
+  ?>
   <body>
 		
 		<div class="wrapper d-flex align-items-stretch">
@@ -133,6 +157,9 @@ include_once(dirname(__DIR__, 1) . '/settings/core.php');
                         </td>  
                         <td>
                             <a href="single_order.php?id=<?=$all['order_id'] ?>">View Products</a>
+                        </td>  
+                        <td>
+                            <a href="?id=<?=$all['order_id'] ?>">Delete order</a>
                         </td>  
                        
                     </tr>

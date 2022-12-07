@@ -131,10 +131,16 @@ class Cart_class extends db_connection{
         return $this->db_fetch_all($sql);
     }
 
+
+    
     public function deleteOrder($orderid){
         $sql = "DELETE FROM orders WHERE order_id=$orderid";
         return $this->db_query($sql);
     }
+
+  
+
+
 
  
 
